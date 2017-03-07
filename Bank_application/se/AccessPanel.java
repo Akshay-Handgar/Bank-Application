@@ -22,12 +22,12 @@ class AccessPanel extends JPanel{
 	JLabel idLabel = new JLabel("ID");
 	JLabel passwdLabel = new JLabel("passwd");
 	
-	JPanel totalPanel = new JPanel(); //∞°øÓµ•∫Œ∫– ¿¸√º
+	JPanel totalPanel = new JPanel(); 
 	JPanel fieldPanel = new JPanel();
 	
 	JTextField idField = new JTextField(8);
 	JPasswordField passwdField = new JPasswordField(8);
-	JButton accessBtn = new JButton("¡¢º”");
+	JButton accessBtn = new JButton("Ï†ëÏÜç"); //connect
 	
 	Border border = BorderFactory.createTitledBorder("");
 	
@@ -35,38 +35,36 @@ class AccessPanel extends JPanel{
 		setSize(300, 500);
 		setLayout(new BorderLayout());
 		
-		smartPhoneLabel.setHorizontalAlignment(JLabel.CENTER); //∂Û∫ß ¡ﬂæ”¡§∑ƒ
-		
+		smartPhoneLabel.setHorizontalAlignment(JLabel.CENTER); //Label central arry
 		totalPanel.setLayout(new GridLayout(0,2));
 		totalPanel.setBorder(border);
 		for(int i =0; i<8;i++){
-			totalPanel.add(new JPanel()); //¿⁄∏Æ√§øÏ±‚ ∆–≥Œ
+			totalPanel.add(new JPanel()); 
 		}
 		totalPanel.add(idLabel);
 		totalPanel.add(idField);
 		totalPanel.add(passwdLabel);
 		totalPanel.add(passwdField);
 		for(int i =0; i<14;i++){
-			totalPanel.add(new JPanel()); //¿⁄∏Æ√§øÏ±‚ ∆–≥Œ
+			totalPanel.add(new JPanel()); 
 		}
 		
-		//¡¢±Ÿ πˆ∆∞
+		//Access Button
 		accessBtn.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) { //¡¢º” πˆ∆∞ ¿Ã∫•∆Æ, ∞Ì∞¥ ¡§∫∏ »Æ¿Œ«œ±‚ -> ¡¢º” «„øÎ/∫“«„øÎ
+			public void actionPerformed(ActionEvent e) { //connect Button event
 				if(e.getSource() == accessBtn){
-					String str = SE.checkUserInfo(idField.getText(), passwdField.getText()); //∞Ì∞¥ ¡§∫∏ »Æ¿Œ
-					
-					if(str == null){ //∞Ì∞¥¿Ã æ∆¥œ¥Ÿ -> ¡¢º” Ω«∆– æÀ∏≤
-						passwdField.setText(""); //√ ±‚»≠ Ω√ƒ—¡÷±‚
-						JOptionPane.showMessageDialog(SE.spf, "æ∆¿Ãµ ∂«¥¬ ∫Òπ–π¯»£∏¶ ¥ŸΩ√ ¿‘∑¬«ÿ ¡÷ººø‰", "∑Œ±◊¿Œ ø¿∑˘", JOptionPane.WARNING_MESSAGE);
+					String str = SE.checkUserInfo(idField.getText(), passwdField.getText()); //Check the cutomer Info
+					if(str == null){ //Fail to connect
+						passwdField.setText(""); 
+						JOptionPane.showMessageDialog(SE.spf, "ÏïÑÏù¥Îîî ÎòêÎäî ÎπÑÎ∞ÄÎ≤àÌò∏Î•º Îã§Ïãú ÏûÖÎ†•Ìï¥ Ï£ºÏÑ∏Ïöî", "Î°úÍ∑∏Ïù∏ Ïò§Î•ò", JOptionPane.WARNING_MESSAGE);
 					}
-					else{ //∞Ì∞¥¿Ã¥Ÿ!! -> »≠∏È πŸ≤Ÿ±‚
-						idField.setText(""); //√ ±‚»≠ Ω√ƒ—¡÷±‚
-						passwdField.setText(""); //√ ±‚»≠ Ω√ƒ—¡÷±‚
+					else{ //success to connect
+						idField.setText(""); 
+						passwdField.setText(""); 
 					
-						SE.smartLoginState(true); //∑Œ±◊¿Œ!
-						SmartPhonePanel.initUserInfo(str); //∞Ì∞¥ ¡§∫∏ πﬁæ∆ø¿±‚
-						cardLayout.show(c, "smartPhone"); //Ω∫∏∂∆Æ∆˘ »≠∏È¿∏∑Œ πŸ≤Ÿ±‚
+						SE.smartLoginState(true); //Login
+						SmartPhonePanel.initUserInfo(str); //Bring the cutomer Info
+						cardLayout.show(c, "smartPhone"); //Change page to Smart phone pange
 					}
 				}
 			}
