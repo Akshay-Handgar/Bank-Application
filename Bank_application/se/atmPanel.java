@@ -16,41 +16,36 @@ import javax.swing.JPasswordField;
 import javax.swing.border.Border;
 
 
-class atmPanel extends JPanel { // MainFrame ¼Ò¼Ó
+class atmPanel extends JPanel { // MainFrame 
 	JLabel welcomeLabel = new JLabel("Welcome to National Korean Bank [ ATM ]");
 	
 	ImageIcon main_gif = new ImageIcon(".\\Images\\MainPageImg\\main_frame_gif.gif");
 	
-	JButton cashOut = new JButton("Cash Out");	//Ãâ±Ş
-	JButton cashIn = new JButton("Cash In");	//ÀÔ±İ		
-	JButton cashMove = new JButton("Cash Transfer");	//°èÁÂÀÌÃ¼
-	JButton useCash = new JButton("Usage");	//»ç¿ë³»¿ª
-	JButton checkCash = new JButton("checkCash");	//ÀÜ¾×È®ÀÎ
+	JButton cashOut = new JButton("Cash Out");	//withdraw
+	JButton cashIn = new JButton("Cash In");	//deposit	
+	JButton cashMove = new JButton("Cash Transfer");	
+	JButton useCash = new JButton("Usage");	/
+	JButton checkCash = new JButton("checkCash");	
 	
-	JPanel mixedPanel = new JPanel(); //atmPanelÀÇ ÇÏºÎ ¸ğµç ±â´ÉÀ» ³ÖÀ» ÆĞ³Î
-	JPanel funcPanel = new JPanel(); //ÀÔ±İ,Ãâ±İ,°èÁÂÀÌÃ¼,»ç¿ë³»¿ª,ÀÜ¾×È®ÀÎ
-	JPanel imagePanel = new JPanel(); //ÀÌ¹ÌÁö ÆĞ³Î
-	JPanel crtAccountPanel = new JPanel(); //°èÁÂ »ı¼º ÆĞ³Î
+	JPanel mixedPanel = new JPanel(); 
+	JPanel funcPanel = new JPanel(); 
+	JPanel imagePanel = new JPanel(); 
+	JPanel crtAccountPanel = new JPanel(); 
 	
-	Border border = BorderFactory.createTitledBorder(""); // Å×µÎ¸®Ãß°¡
+	Border border = BorderFactory.createTitledBorder(""); 
 	JLabel imageLabel = new JLabel();
 	
-	JButton createAccountBtn = new JButton("createAccount"); //°èÁÂ»ı¼º¹öÆ°
+	JButton createAccountBtn = new JButton("createAccount"); 
 	
 
 	
 	createAccountPanel cap = null;
-	atmPanel() {
+	atmPanel() {   //panel design
 		setLayout(new BorderLayout());
-		welcomeLabel.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		welcomeLabel.setHorizontalAlignment(JLabel.CENTER); 
 		add(welcomeLabel,BorderLayout.NORTH);
 		add(mixedPanel,BorderLayout.CENTER);
-		
-		//funcPanel.setBorder(border);
-		//imagePanel.setBorder(border);
-		//crtAccountPanel.setBorder(border);
-		
-		mixedPanel.setLayout(new BorderLayout()); //¾Æ·§ºÎºĞ ÆĞ³ÎÀ» 3¿­·Î
+		mixedPanel.setLayout(new BorderLayout()); 
 		mixedPanel.add(funcPanel,BorderLayout.WEST);
 		mixedPanel.add(imagePanel,BorderLayout.CENTER);
 		mixedPanel.add(crtAccountPanel,BorderLayout.EAST);
@@ -75,7 +70,7 @@ class atmPanel extends JPanel { // MainFrame ¼Ò¼Ó
 		funcPanel.add(useCash);
 		funcPanel.add(checkCash);
 		
-		//imagePanel ÀÌ¹ÌÁöºÎºĞ
+		//imagePanel 
 		
 		crtAccountPanel.setLayout(new GridLayout(8,0));
 		crtAccountPanel.add(createAccountBtn);
@@ -84,53 +79,53 @@ class atmPanel extends JPanel { // MainFrame ¼Ò¼Ó
 		
 	}
 	
-	private class checkCashClicked extends MouseAdapter { //ÀÜ¾× È®ÀÎ!
+	private class checkCashClicked extends MouseAdapter { 
 		public void mouseClicked(MouseEvent c) {
 			if(c.getSource() == checkCash){
-				if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®Æù ÀÜ¾×
-					JOptionPane.showMessageDialog(mixedPanel, "ÀÜ¾×Àº " + SE.getAccountBalance(SmartPhonePanel.userAccountNumber.getText()) + "¿ø ÀÔ´Ï´Ù");
+				if(SE.smartInterworkState){ 
+					JOptionPane.showMessageDialog(mixedPanel, "ì”ì•¡ì€ " + SE.getAccountBalance(SmartPhonePanel.userAccountNumber.getText()) + "ì› ì…ë‹ˆë‹¤");
 				}
-				else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or °èÁÂ or Ãë¼Ò
-					Object[] options = {"¿¬µ¿ÇÏ±â", "°èÁÂ", "Ãë¼Ò"};
+				else{ 
+					Object[] options = {"ì—°ë™í•˜ê¸°", "ê³„ì¢Œ", "ì·¨ì†Œ"};
 					int select = JOptionPane.showOptionDialog(mixedPanel, 
-						"¿¬µ¿ÇÏ½Ã°Ú½À´Ï±î?", "°áÁ¦ ¼ö´Ü ¼±ÅÃ", 
+						"ì—°ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²°ì œ ìˆ˜ë‹¨ ì„ íƒ", 
 						JOptionPane.YES_NO_CANCEL_OPTION, 
 						JOptionPane.QUESTION_MESSAGE, 
 						null, options, options[2]);
 					
-					if(select == 0){//¿¬µ¿ÇÏ±â
-						if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-								JOptionPane.showMessageDialog(mixedPanel, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+					if(select == 0){
+						if(SE.smartState == false){ 
+								JOptionPane.showMessageDialog(mixedPanel, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 						}
-						else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-							JOptionPane.showMessageDialog(mixedPanel, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						else if(SE.smartLoginState == false){ 
+							JOptionPane.showMessageDialog(mixedPanel, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 						}
-						else{ //¿¬µ¿ÇÏ±â
-							SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
+						else{ 
+							SE.smartInterworkState(true); 
 							
-							JOptionPane.showMessageDialog(mixedPanel, "ÀÜ¾×Àº " + SE.getAccountBalance(SmartPhonePanel.userAccountNumber.getText())+"¿ø ÀÔ´Ï´Ù");
+							JOptionPane.showMessageDialog(mixedPanel, "ì”ì•¡ì€ " + SE.getAccountBalance(SmartPhonePanel.userAccountNumber.getText())+"ì› ì…ë‹ˆë‹¤");
 						}
 					}
-					else if(select == 1){ //°èÁÂ
-						String id = JOptionPane.showInputDialog(mixedPanel, "ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "°èÁÂ ÀÔ·Â", JOptionPane.QUESTION_MESSAGE);
+					else if(select == 1){ 
+						String id = JOptionPane.showInputDialog(mixedPanel, "IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.", "ê³„ì¢Œ ì…ë ¥", JOptionPane.QUESTION_MESSAGE);
 						
-						if(id != null){ //ÀÔ·ÂÀÌ ÀÖÀ¸¸é
+						if(id != null){ 
 							JPasswordField passwd = new JPasswordField();
 							int ok = JOptionPane.showConfirmDialog(mixedPanel, passwd, "Enter Password", JOptionPane.WARNING_MESSAGE);
 							
-							if(ok == JOptionPane.OK_OPTION){ //È®ÀÎ ¹öÆ° ´­·¶À» ½Ã
+							if(ok == JOptionPane.OK_OPTION){ 
 								String user = SE.checkUserInfo(id, passwd.getText());
 								
-								if(user == null){ //°í°´ÀÌ ¾Æ´Ï´Ù -> Á¢¼Ó ½ÇÆĞ ¾Ë¸²
-									JOptionPane.showMessageDialog(mixedPanel, "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+								if(user == null){ 
+									JOptionPane.showMessageDialog(mixedPanel, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 								}
-								else{ //°í°´ÀÌ´Ù!! -> °Å·¡, ½º¸¶Æ®Æù°ú °°Àº °èÁÂ¸é ¾Ë¶÷ ¶ß°Ô
-									JOptionPane.showMessageDialog(mixedPanel, "ÀÜ¾×Àº " + SE.getAccountBalance(user)+"¿ø ÀÔ´Ï´Ù");
+								else{ 
+									JOptionPane.showMessageDialog(mixedPanel, "ì”ì•¡ì€ " + SE.getAccountBalance(user)+"ì› ì…ë‹ˆë‹¤");
 								}
 							}
 						}
 					}
-					else if(select == 2){ } //Ãë¼Ò
+					else if(select == 2){ } //cancle
 				}
 			}
 		}
