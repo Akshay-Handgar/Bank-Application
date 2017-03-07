@@ -14,150 +14,143 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-/* SE - main Å¬·¡½º, smartPhoneFrame ¿©´İ±â & ÆÄÀÏ ÀÔÃâ·Â °ü¸®
+/* SE - main Class, smartPhoneFrame Manage Data of input and output
  * 
- * ¸Ş¼Òµå °£´Ü Á¤¸®
- * smartState - ½º¸¶Æ®Æù ÇÁ·¹ÀÓ »óÅÂ ¹Ù²Ù±â
- * smartLoginState - ½º¸¶Æ®Æù ·Î±×ÀÎ »óÅÂ ¹Ù²Ù±â
- * smartInterworkState - ½º¸¶Æ®Æù ¿¬µ¿ »óÅÂ ¹Ù²Ù±â
- * openSmart - ½º¸¶Æ®Æù ÇÁ·¹ÀÓ ¿­±â
- * closeSmart - ½º¸¶Æ®Æù ÇÁ·¹ÀÓ ´İ±â
+ * Methods
+ * smartState - Switching the smart phone frame status
+ * smartLoginState - Switching the smart phone Login status
+ * smartInterworkState - Switching the smart phone Interlocked status. 
+ * openSmart - Open the smart phone Frame.
+ * closeSmart - Close the smart phone Frame.
  * 
- * setInterest - ÀÌÀÚ °è»êÇÏ´Â ¸Ş¼Òµå
+ * setInterest - Method Computes interest
  * 
- * checkUserInfo - ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ ¹Ş¾Æ °í°´ÀÎÁö ÆÇ´ÜÇÏ´Â ¸Ş¼Òµå 
- * getAccountName - °èÁÂ¹øÈ£ÀÇ °í°´ ¸íÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå 
- * getAccountBalance - °èÁÂ¹øÈ£ÀÇ ÀÜ¾×À» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå 
- * getAccountBenefit - °èÁÂ¹øÈ£ÀÇ ÇıÅÃÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå 
- * banking - ÀºÇà °Å·¡¸¦ ÇÏ´Â ¸Ş¼Òµå
- * setAccountInfo - °èÁÂÀÇ ³»¿ªÀ» Àû´Â ¸Ş¼Òµå 
- * getMonthBenefit - ÀÌ ´ŞÀÇ ÇıÅÃ ºÒ·¯¿À±â
+ * checkUserInfo - Login method 
+ * getAccountName - A method that returns the customer name of the account.
+ * getAccountBalance - A method that returns the balance of the account.
+ * getAccountBenefit - A method that returns the benefit of the account.
+ * banking - A method that deals with bank.
+ * setAccountInfo - A method that write the content of account. 
+ * getMonthBenefit - Bring the benefit of this month.
  * 
- * smartPhoneMessage - ½º¸¶Æ®Æù¿¡ ÆË¾÷ ¶ç¿ì±â
- * loadDate - ÇöÀç ³¯Â¥ ºÒ·¯¿À±â
- * loadTime - ÇöÀç ½Ã°£ ºÒ·¯¿À±â
+ * loadDate - Bring the date
+ * loadTime - Bring the Time
  */
 public class SE { //Software Engineer
-	static boolean smartState = false; //½º¸¶Æ®Æù ÇÁ·¹ÀÓ »óÅÂ (½ÇÇà Áß or Á¾·á), ´Ù¸¥ Å¬·¡½º¿¡¼­ »ç¿ëÇÏ·Á¸é staticÀÌ ºÙ¾î¾ßÇÑ´Ù.
-	static boolean smartLoginState = false; //½º¸¶Æ®Æù ·Î±×ÀÎ »óÅÂ (·Î±×ÀÎ or ·Î±× ¾Æ¿ô)
-	static boolean smartInterworkState = false; //½º¸¶Æ®Æù ¿¬µ¿ »óÅÂ (½ÇÇà Áß or Á¾·á)
+	static boolean smartState = false; 
+	static boolean smartLoginState = false; 
+	static boolean smartInterworkState = false; 
 	static MainFrame mf = null;
 	static SmartPhoneFrame spf = null;
 	
-	static String nowDate = null; //ÇöÀç ³¯Â¥¸¦ ÀúÀåÇÏ´Â ÇÔ¼ö, °è»ê¼­¿Í ³»¿ª »çÀÌÀÇ ½Ã°£ Â÷¸¦ ¾ø¾Ö±â À§ÇØ »ç¿ë
-	static String nowTime = null; //ÇöÀç ½Ã°£¸¦ ÀúÀåÇÏ´Â ÇÔ¼ö
-	static int monthBenefit = 0; //ÀÌ´ŞÀÇ ÇıÅÃ
+	static String nowDate = null; 
+	static String nowTime = null; 
+	static int monthBenefit = 0; 
 	
 	public static void main(String[] args) {
-		setInterest(); //ÀÌÀÚ °è»ê
-		monthBenefit = getMonthBenefit(); //ÀÌ´ŞÀÇ ÇıÅÃ ¹Ş±â
-		openSmart(); //½º¸¶Æ®Æù ÇÁ·¹ÀÓ ¿­±â
-		mf = new MainFrame(); //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPanel, shopPanelÀ¸·Î ±¸¼º)
+		setInterest(); 
+		monthBenefit = getMonthBenefit(); 
+		openSmart(); 
+		mf = new MainFrame(); 
 	}
 	
-	//»óÅÂ º¯È­ ¸Ş¼Òµå *******
-	static void smartState(boolean state){ //½º¸¶Æ®Æù ÇÁ·¹ÀÓ »óÅÂ ¹Ù²Ù±â, µğÆúÆ® Á¢±ÙÁ¦ÇÑÀÚ - °°Àº ÆĞÅ°Áö + ÀÚ±â °´Ã¼ ³» #Âü°í 1
+	//Status change method******
+	static void smartState(boolean state){ //Smart phone frame status
 		smartState = state;
 	}
 	
-	static void smartLoginState(boolean state){ //½º¸¶Æ®Æù ·Î±×ÀÎ »óÅÂ ¹Ù²Ù±â
+	static void smartLoginState(boolean state){  //Smart phone Login status
 		smartLoginState = state;
 		
-		if(smartLoginState == false){ //·Î±×¾Æ¿ôÇÏ¸é
-			smartInterworkState(false); //¿¬µ¿µµ Ç®¸°´Ù
+		if(smartLoginState == false){ 
+			smartInterworkState(false); 
 		}
 	}
 	
-	static void smartInterworkState(boolean state){ //½º¸¶Æ®Æù ¿¬µ¿ »óÅÂ ¹Ù²Ù±â
+	static void smartInterworkState(boolean state){  //Smart phone interlock status
 		smartInterworkState = state;
 		
-		if(state){ //¿¬µ¿ Áß..
-			SmartPhonePanel.interworkBtn.setText("¿¬µ¿ Áß..");
+		if(state){
+			SmartPhonePanel.interworkBtn.setText("ì—°ë™ ì¤‘..");
 		}
 		else{
-			SmartPhonePanel.interworkBtn.setText("¿¬µ¿ÇÏ±â");
+			SmartPhonePanel.interworkBtn.setText("ì—°ë™í•˜ê¸°");
 		}
 	}
 	
-	static void openSmart(){ //½º¸¶Æ®Æù ÇÁ·¹ÀÓ ¿­±â
-		spf = new SmartPhoneFrame(); //¸ŞÀÎ ÇÁ·¹ÀÓÀÇ ¸Ş´º¿¡¼­ »ç¿ëÇÑ´Ù.
+	static void openSmart(){ 
+		spf = new SmartPhoneFrame(); 
 		
 		spf.setSize(300, 500);
 		spf.setTitle("SmartPhone");
-        spf.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); //¿ÏÀüÇÑ Á¾·á¸¦ À§ÇØ! #Âü°í 1
+        spf.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); 
         
         spf.setVisible(true); 
 	}
 	
-	static void closeSmart(){ //½º¸¶Æ®Æù ÇÁ·¹ÀÓ ´İ±â, SmartPhoneFrame¿¡¼­ ÀÚ¼¼È÷ ´Ù·ë
+	static void closeSmart(){ 
 		spf.closeSmart();
-	} //»óÅÂ º¯È­ ¸Ş¼Òµå ³¡ *******
+	} 
 	
 	
-	//DB Á¢±Ù ¸Ş¼Òµå ******
-	static Connection DBconnect(){ //µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ¸Ş¼Òµå
+	//DB Access methed ******
+	static Connection DBconnect(){ 
 		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance(); //db connecter¸¦ driver¿¡ Å¾Àç
+			Class.forName("com.mysql.jdbc.Driver").newInstance(); //Put db connecter in driver
 			
-			Connection conn = null; //µ¥ÀÌÅÍº£ÀÌ½º¿¡ Á¢¼ÓÇÏ±â À§ÇÑ º¯¼ö 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank" ,"root" ,"3guswltmfrl"); //DB¿¬°á
+			Connection conn = null; 
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank" ,"root" ,"3guswltmfrl"); 
 
 			return conn;
 		}
 		catch(Exception e){ 
-			System.out.println("DB ¿À·ù");
+			System.out.println("DB Error");
 		}
 		return null;
 	}
 	
-	/* setInterest - ÀÌÀÚ °è»êÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - void
-	 * ¹İÈ¯Çü - void
-	 * userInfo table »ç¿ë #Âü°í 2, °èÁÂ¹øÈ£ table »ç¿ë #Âü°í 3
-	 * ÀÜ¾×ÀÌ ¸¸¿ø ÀÌ»óÀÎ °èÁÂ¿¡ ´ŞÀÇ ¸¶Áö¸·³¯ ±âÁØ ÀÜ¾×ÀÇ 1%°¡ ´ÙÀ½´Ş 1ÀÏ¿¡ ÀÌÀÚ·Î ºÙ´Â´Ù°í °¡Á¤
-	 * ³»¿ª¿£ "ÀÔ±İ|ÀÌÀÚ"·Î Ç¥Çö, ¿¬µµ/´Ş/1|00:00À¸·Î ±âÀÔ
+	/* setInterest - A method that calculates interest.
+	   Monthly interest rate  is 1%
 	 */
-	static void setInterest(){ //ÀÌÀÚ °è»êÇÏ´Â ¸Ş¼Òµå
-		LinkedList <String> accountList = new LinkedList <String>(); //°èÁÂµé
-		LinkedList <Integer> balanceList = new LinkedList <Integer>(); //°èÁÂÀÇ ÀÜ¾×µé
-		LinkedList <String> dayList = new LinkedList <String>(); //°èÁÂÀÇ ¸¶Áö¸· °Å·¡ ³¯Â¥
+	static void setInterest(){ 
+		LinkedList <String> accountList = new LinkedList <String>(); 
+		LinkedList <Integer> balanceList = new LinkedList <Integer>(); 
+		LinkedList <String> dayList = new LinkedList <String>(); 
 		
-		Connection conn = DBconnect(); //DB ¿¬°á!
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null;  
+		ResultSet rs = null; 
 		
 		String account = null;
 		int balance = 0;
 		String day = null;
 		
 		try{ 
-			//ÀÜ¾×ÀÌ ¸¸¿ø ÀÌ»óÀÎ °èÁÂµéÀ» ¼öÁı¼öÁı
+			//Interest condition - The balance of Account is more than 10,000 won
 			pstmt = conn.prepareStatement("select account_number, balance from userinfo where balance >= 10000");
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
-			while(rs.next()){ 
-				accountList.add(rs.getString("account_number")); //°èÁÂ ¼öÁı
-				balanceList.add(rs.getInt("balance")); //ÀÜ¾× ¼öÁı
+			rs = pstmt.executeQuery(); 
+			while(rs.next()){ //collecting
+				accountList.add(rs.getString("account_number")); 
+				balanceList.add(rs.getInt("balance")); 
 			}
 			
-			//¸¶Áö¸· °Å·¡ ³¯Â¥ ¼öÁı¼öÁı
-			nowDate = loadDate(); //ÇöÀç ³¯Â¥
-			String n[] = nowDate.split("/"); //n[0] = ¿¬µµ, n[1] = ¿ù, n[2] = ÀÏ
+			//Interest standard: Last Trading date
+			nowDate = loadDate(); 
+			String n[] = nowDate.split("/"); //n[0] = year, n[1] = month, n[2] = day
 			int num = 0;
-			
+			//Collecting Data
 			for(int i=0;i<accountList.size();i++){
 				account = accountList.get(i);
 				
-				//¸¶Áö¸· ³»¿ª Ã£±â
-				pstmt = conn.prepareStatement("select max(num) from `" + account + "`"); //num Áß °¡Àå Å« °ª Ã£±â!
-				rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+				pstmt = conn.prepareStatement("select max(num) from `" + account + "`"); 
+				rs = pstmt.executeQuery(); 
 				if(rs.next()){
 					num = rs.getInt("max(num)");
 				}
 				
-				//³¯Â¥ Ã£±â
 				pstmt = conn.prepareStatement("select date from `" + account + "` where num = " + num);
-				rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+				rs = pstmt.executeQuery(); 
 				if(rs.next()){
 					dayList.add(rs.getString("date"));
 				}
@@ -166,86 +159,81 @@ public class SE { //Software Engineer
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}	
 		
-		//ÀÌÀÚ ÀÌÀÚ!!
+		
 		for(int i=0;i<accountList.size();i++){
 			account = accountList.get(i);
 			balance = balanceList.get(i);
 			day = dayList.get(i);
 			
-			//ÀÌÀÚ ºÙÀ» ¼ö ÀÖ´ÂÁö È®ÀÎ
-			String d[] = day.split("/"); //¸¶Áö¸· ³¯Â¥, d[0] = ¿¬µµ, d[1] = ¿ù, d[2] = ÀÏ
-			String n[] = nowDate.split("/"); //ÇöÀç ³¯Â¥, n[0] = ¿¬µµ, n[1] = ¿ù, n[2] = ÀÏ
+			//Check the interest standard
+			String d[] = day.split("/"); 
+			String n[] = nowDate.split("/"); 
 			boolean check = false;
 		
-			if(Integer.parseInt(n[0]) > Integer.parseInt(d[0])){ //ÇöÀçÀÇ ¿¬µµ°¡ Å©¸é
+			if(Integer.parseInt(n[0]) > Integer.parseInt(d[0])){ 
 				check = true;
 			}
-			else if(Integer.parseInt(n[0]) == Integer.parseInt(d[0])){ //ÇöÀç ¿¬µµ¿Í ¸¶Áö¸· ¿¬µµ°¡ °°À¸¸é
-				if(Integer.parseInt(n[1]) == Integer.parseInt(d[1])){ //ÇöÀç ¿ùÀÌ Å©¸é
+			else if(Integer.parseInt(n[0]) == Integer.parseInt(d[0])){ 
+				if(Integer.parseInt(n[1]) == Integer.parseInt(d[1])){
 					check = true;
 				}
 			}
 			
-			//ÀÌÀÚ ºÙÀÌÀÚ!
+			//Add interest
 			if(check = true){
-				int interestDay = ((Integer.parseInt(n[0]) - Integer.parseInt(d[0])) * 12) - //¿¬µµ Â÷ÀÌ °è»ê
-							  (Integer.parseInt(d[1]) - Integer.parseInt(n[1])); //´Ş Â÷ÀÌ °è»ê, ÀÌÀÚ¸¦ ¹Ş´Â ³¯ ¼ö
-				int interest = 0; //ÀÌÀÚ ±¸ÇÏ´Â ¾Ö
+				int interestDay = ((Integer.parseInt(n[0]) - Integer.parseInt(d[0])) * 12) - 
+							  (Integer.parseInt(d[1]) - Integer.parseInt(n[1])); 
+				int interest = 0; 
 				
-				int year = Integer.parseInt(d[0]); //¿¬µµ
-				int month = Integer.parseInt(d[1])+1; //³¯Â¥
+				int year = Integer.parseInt(d[0]); 
+				int month = Integer.parseInt(d[1])+1; 
 				
 				for(int j=0;j<interestDay;j++, month++){
-					if(month == 13){ month = 1; year++; } //¿¬µµ°¡ ³Ñ¾î°¨
+					if(month == 13){ month = 1; year++; } 
 					
-					nowDate = year + "/" + month + "/1"; //ÀÔ±İ  ³¯Â¥ ¼³Á¤!
-					nowTime = "0:0"; //ÀÔ±İ ½Ã°£ ¼³Á¤!
-					interest = (int)(balance*0.01); //ÀÔ±İ ±İ¾× ¼³Á¤!, ¿ù ÀÌÀÚ 1%!
-					balance += interest; //ÀÜ¾×À¸·Î °í°í
+					nowDate = year + "/" + month + "/1"; 
+					nowTime = "0:0"; 
+					interest = (int)(balance*0.01); 
+					balance += interest; 
 					
-					banking(account, (month + "¿ù ÀÌÀÚ"), interest, '+', false); //ÀÌÀÚ ³Ö±â³Ö±â
+					banking(account, (month + "ì›” ì´ì"), interest, '+', false); 
 				}
 			}
 		}
 	}
 	
-	/* checkUserInfo - ¾ÆÀÌµğ(°í°´ ¸í)¿Í ºñ¹Ğ¹øÈ£¸¦ ¹Ş¾Æ °í°´ÀÎÁö ÆÇ´ÜÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - id = °í°´ ¸í, password = ºñ¹Ğ¹øÈ£
-	 * ¹İÈ¯Çü - String = °í°´ÀÌ ¸ÂÀ» ½Ã °í°´ÀÇ °èÁÂ ¹øÈ£¸¦ ¹İÈ¯, °í°´ÀÌ ¾Æ´Ò ½Ã null ¹İÈ¯
-	 * userInfo table »ç¿ë #Âü°í 2 
-	 */
-	static String checkUserInfo(String id, String password){ //¾ÆÀÌµğ(°í°´ ¸í)¿Í ºñ¹Ğ¹øÈ£¸¦ ¹Ş¾Æ °í°´ÀÎÁö ÆÇ´ÜÇÏ´Â ¸Ş¼Òµå
-		if(id == null || password == null){ //ºóÄ­ÀÌ ÀÖÀ¸¸é
+	/* checkUserInfo - Login method */
+	static String checkUserInfo(String id, String password){ 
+		if(id == null || password == null){ 
 			return null;
 		}
 		else{
-			Connection conn = DBconnect(); //DB ¿¬°á!
+			Connection conn = DBconnect(); //DB connect
 			
-			PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-			ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+			PreparedStatement pstmt = null; 
+			ResultSet rs = null; 
 			
 			try{
-				pstmt = conn.prepareStatement("select * from userinfo where name = ? AND password = ?"); //id && pwd È®ÀÎ
-				pstmt.setString(1, id); //?¿¡ µ¥ÀÌÅÍ¸¦ ¹ÙÀÎµù
+				pstmt = conn.prepareStatement("select * from userinfo where name = ? AND password = ?"); //check id && pwd 
+				pstmt.setString(1, id); //binding
 				pstmt.setString(2, password);  
 				
-				rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+				rs = pstmt.executeQuery(); //excute
 				
-				if(rs.next()){ //Ã£À½!
-					//System.out.println(rs.getString("account_number")); //¹İÈ¯µÇ´Â °èÁÂ¹øÈ£ °ª Ãâ·ÂÈ®ÀÎ
+				if(rs.next()){ 
 					return rs.getString("account_number");
 				}
 			}
 			catch(Exception ex) {
 				System.out.println("handle the error");
 			}
-			finally{ //dbÀÚ¿ø ¹İÈ¯
+			finally{ 
 				if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 		        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 		        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -254,32 +242,28 @@ public class SE { //Software Engineer
 		}
 	}
 	
-	/* getAccountName - °èÁÂ¹øÈ£ÀÇ °í°´ ¸íÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - account = °èÁÂ¹øÈ£
-	 * ¹İÈ¯Çü - String = °èÁÂ°¡ ÀÖÀ» ½Ã °èÁÂÀÇ °í°´ ¸í ¹İÈ¯, ¾øÀ» ½Ã null ¹İÈ¯
-	 * userInfo table »ç¿ë #Âü°í 2 
+	/* getAccountName - A method that returns the customer name of the account.
 	 */
-	static String getAccountName(String account){ //°èÁÂ¹øÈ£ÀÇ °í°´ ¸íÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static String getAccountName(String account){ 
+		Connection conn = DBconnect(); //DB connect
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		try{
-			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); //ÇÔ¼öÀÎÀÚ¿Í ÀÏÄ¡ÇÏ´Â °èÁÂ È®ÀÎ
-			pstmt.setString(1, account);  //?¿¡ µ¥ÀÌÅÍ¸¦ ¹ÙÀÎµù
+			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); 
+			pstmt.setString(1, account);  //binding
 			
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+			rs = pstmt.executeQuery(); //excute!
 			
 			if(rs.next()){
-				//System.out.println(rs.getString("name")); //¹İÈ¯µÇ´Â ÅëÀÜ±İ¾× Ãâ·ÂÈ®ÀÎ
 				return rs.getString("name");
 			}
 		}
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -287,32 +271,28 @@ public class SE { //Software Engineer
 		return null;
 	}
 	
-	/* getAccountBalance - °èÁÂ¹øÈ£ÀÇ ÀÜ¾×À» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - account = °èÁÂ¹øÈ£
-	 * ¹İÈ¯Çü - int = °èÁÂ°¡ ÀÖÀ» ½Ã °èÁÂÀÇ ÀÜ¾×À» ¹İÈ¯, ¾øÀ» ½Ã -1 ¹İÈ¯
-	 * userInfo table »ç¿ë #Âü°í 2 
+	/* getAccountBalance - A method that returns the customer name of the account.
 	 */
-	static int getAccountBalance(String account){ //°èÁÂ¹øÈ£ÀÇ ÀÜ¾×À» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static int getAccountBalance(String account){
+		Connection conn = DBconnect(); //DB connect
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
-		
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
+	
 		try{
-			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); //ÇÔ¼öÀÎÀÚ¿Í ÀÏÄ¡ÇÏ´Â °èÁÂ È®ÀÎ
-			pstmt.setString(1, account);  //?¿¡ µ¥ÀÌÅÍ¸¦ ¹ÙÀÎµù
+			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); 
+			pstmt.setString(1, account);  //binding
 			
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+			rs = pstmt.executeQuery(); //excute
 			
 			if(rs.next()){
-				//System.out.println(rs.getInt("balance")); //¹İÈ¯µÇ´Â ÅëÀÜ±İ¾× Ãâ·ÂÈ®ÀÎ
 				return rs.getInt("balance");
 			}
 		}
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -320,32 +300,28 @@ public class SE { //Software Engineer
 		return -1;
 	}
 	
-	/* getAccountBenefit - °èÁÂ¹øÈ£ÀÇ ÇıÅÃÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - account = °èÁÂ¹øÈ£
-	 * ¹İÈ¯Çü - String = °èÁÂ°¡ ÀÖÀ» ½Ã °èÁÂÀÇ ÇıÅÃÀ» ¹İÈ¯, ¾øÀ» ½Ã -1 ¹İÈ¯
-	 * userInfo table »ç¿ë #Âü°í 2 
+	/* getAccountBenefit - A method that returns the benefit of the account
 	 */
-	static int getAccountBenefit(String account){ //°èÁÂ¹øÈ£ÀÇ ÇıÅÃÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static int getAccountBenefit(String account){ 
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		try{
-			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); //ÇÔ¼öÀÎÀÚ¿Í ÀÏÄ¡ÇÏ´Â °èÁÂ È®ÀÎ
-			pstmt.setString(1, account);  //?¿¡ µ¥ÀÌÅÍ¸¦ ¹ÙÀÎµù
+			pstmt = conn.prepareStatement("select * from userinfo where account_number = ?"); 
+			pstmt.setString(1, account);  
 			
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+			rs = pstmt.executeQuery(); 
 			
 			if(rs.next()){
-				//System.out.println(rs.getInt("benefit")); //¹İÈ¯µÇ´Â ÅëÀÜ±İ¾× Ãâ·ÂÈ®ÀÎ
 				return rs.getInt("benefit");
 			}
 		}
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -353,127 +329,121 @@ public class SE { //Software Engineer
 		return -1;
 	}
 	
-	/* banking - ÀºÇà °Å·¡¸¦ ÇÏ´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - account = °èÁÂ¹øÈ£, shop = °áÁ¦ Àå¼Ò(ex. ATM, µµ½º¸¶½º..), money = °Å·¡ ±İ, op = ÀÔ±İ(+), Ãâ±İ(-), smart = ½º¸¶Æ®Æù °Å·¡ÀÎ°¡
-	 * ¹İÈ¯Çü - boolean = °Å·¡ ¿Ï·á½Ã true, °Å·¡ ¹Ì¿Ï·á½Ã false
-	 * °èÁÂ¹øÈ£ table »ç¿ë #Âü°í 3
+	/* banking - Bank transaction class
+	 * account = Account number, shop = calculate program(ex. ATM), money = money, op = deposit(+), withdraw(-)
 	 */
-	static boolean banking(String account, String content, int money, char op, boolean smart){ //ÀºÇà °Å·¡¸¦ ÇÏ´Â ¸Ş¼Òµå
-		if((op == '-') && (getAccountBalance(account) < money)){ //Ãâ±İÀÎµ¥ ÀÜ¾×ÀÌ ¾ø´Ù 
-			JOptionPane.showMessageDialog(mf, "°èÁÂÀÇ ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù", "°áÁ¦ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+	static boolean banking(String account, String content, int money, char op, boolean smart){ 
+		if((op == '-') && (getAccountBalance(account) < money)){ //No money
+			JOptionPane.showMessageDialog(mf, "ê³„ì¢Œì˜ ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤", "ê²°ì œ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
-		else{ //ÀÜ¾×ÀÌ ÀÖ´Ù 
-			int benefit = 0; //ÇıÅÃ, Ã³À½¿£ ÇÒÀÎ ¸ñ·Ï ¹Ş¾Æ¿À±â -> ÇÒÀÎ ±İ¾×
+		else{ 
+			int benefit = 0; 
 			
-			if(content.contains("ATM") || (content.contains("ÀÌÀÚ"))){ //ATM °Å·¡
+			if(content.contains("ATM") || (content.contains("ì´ì"))){ 
 				if(content.contains("ATM")){
 					nowTime = loadTime();
 				}
-				setAccountInfo(account, content, money, op); //°èÁÂ ³»¿ª ¾²±â
+				setAccountInfo(account, content, money, op); 
 			}
-			else{ //»óÁ¡ °Å·¡ -> ¿µ¼öÁõ ÆË¾÷
-				String str[] = {"ÇÒÀÎ ¾øÀ½", "À½½Ä ÇÒÀÎ", "¿îµ¿ ÇÒÀÎ", "¿µÈ­ ÇÒÀÎ", "³îÀÌ ÇÒÀÎ"}; //ÇÒÀÎ Á¾·ù
-				String benefitStr = "ÇÒÀÎ ¾øÀ½";
+			else{ 
+				String str[] = {"í• ì¸ ì—†ìŒ", "ìŒì‹ í• ì¸", "ìš´ë™ í• ì¸", "ì˜í™” í• ì¸", "ë†€ì´ í• ì¸"}; //Kind of discount
+				String benefitStr = "í• ì¸ ì—†ìŒ"; 
 				
-				if(monthBenefit == shopPanel.thisShopBenefit){ //ÀÌ ´ŞÀÇ ÇıÅÃÀÌ´Ù!
-					benefitStr = "ÀÌ ´ŞÀÇ ÇıÅÃ"; //ÇÒÀÎ ³»¿ª ¾²±â
-					benefit = (int)(money * 0.1); //10% ÇÒÀÎ!
-					System.out.println("ÀÌ´ŞÀÇ ÇıÅÃ");
+				if(monthBenefit == shopPanel.thisShopBenefit){ 
+					benefitStr = "ì´ ë‹¬ì˜ í˜œíƒ"; 
+					benefit = (int)(money * 0.1); //10% discount
+					System.out.println("ì´ë‹¬ì˜ í˜œíƒ");
 				}
-				else{ //ÇıÅÃ Ã£±â
-					if(getAccountBenefit(account) == shopPanel.thisShopBenefit){ //ÇÒÀÎ ¹Ş´Â´Ù!
-						benefitStr = str[benefit]; //ÇÒÀÎ ³»¿ª ¾²±â
-						benefit = (int)(money * 0.1); //10% ÇÒÀÎ!
-						System.out.println("³» ÇıÅÃ!");
+				else{
+					if(getAccountBenefit(account) == shopPanel.thisShopBenefit){ 
+						benefitStr = str[benefit]; 
+						benefit = (int)(money * 0.1); /
+						System.out.println("ë‚´ í˜œíƒ!");
 					}
 				}
 				
-				nowDate = loadDate(); //ÇöÀç ³¯Â¥ 
-				nowTime = loadTime(); //½Ã°£ ÀúÀå
-				setAccountInfo(account, content, money - benefit, op); //°èÁÂ ³»¿ª ¾²±â
+				nowDate = loadDate(); 
+				nowTime = loadTime();
+				setAccountInfo(account, content, money - benefit, op); //Store the discount date/time 				
+				String bill = "ê±°ë˜ì²˜ ëª… : " + content + "\r\n" +
+							  "ê±°ë˜ì ëª… : " + getAccountName(account) + "\r\n" + 
+							  "ê²°ì œ ì¼ : " + nowDate + "|" + nowTime + "\r\n" +
+							  "í•©   ê³„ : " + money + "\r\n" +
+							  "í• ì¸ ê¸ˆì•¡ : " + benefit + " (" + benefitStr + ")" + "\r\n" +
+							  "ê²°ì œ ê¸ˆì•¡ : " + (money - benefit);
 				
-				String bill = "°Å·¡Ã³ ¸í : " + content + "\r\n" +
-							  "°Å·¡ÀÚ ¸í : " + getAccountName(account) + "\r\n" + 
-							  "°áÁ¦ ÀÏ : " + nowDate + "|" + nowTime + "\r\n" +
-							  "ÇÕ   °è : " + money + "\r\n" +
-							  "ÇÒÀÎ ±İ¾× : " + benefit + " (" + benefitStr + ")" + "\r\n" +
-							  "°áÁ¦ ±İ¾× : " + (money - benefit);
-				
-				JOptionPane.showMessageDialog(mf, bill, "¿µ¼öÁõ", JOptionPane.INFORMATION_MESSAGE); //¸ŞÀÎ ÇÁ·¹ÀÓ¿¡ ÆË¾÷
+				JOptionPane.showMessageDialog(mf, bill, "ì˜ìˆ˜ì¦", JOptionPane.INFORMATION_MESSAGE); 
 			}
 			
-			if(smart){ //½º¸¶Æ®Æù °áÁ¦½Ã
-				smartPhoneMessage((money - benefit), op); //½º¸¶Æ®Æù¿¡ ÆË¾÷
-				SmartPhonePanel.setBalance(getAccountBalance(account)); //½º¸¶Æ®Æù ÀÜ¾× °»½Å
+			if(smart){ //calculated by smart phone
+				smartPhoneMessage((money - benefit), op); 
+				SmartPhonePanel.setBalance(getAccountBalance(account)); 
 			}
 			return true;
 		}
 	}
 	
-	/* setAccountInfo - °èÁÂÀÇ ³»¿ªÀ» Àû´Â ¸Ş¼Òµå
-	 * ¸Å°³ º¯¼ö - account = °èÁÂ¹øÈ£, content = °áÁ¦ Àå¼Ò(ex. ATM, µµ½º¸¶½º..), money = °Å·¡ ±İ, op = ÀÔ±İ(+), Ãâ±İ(-)
-	 * ¹İÈ¯Çü - void
-	 * userInfo table »ç¿ë #Âü°í 2, °èÁÂ¹øÈ£ table »ç¿ë #Âü°í 3
+	/* setAccountInfo - The method that records the account history.
 	 */
-	static void setAccountInfo(String account, String content, int money, char op){ //°èÁÂÀÇ ³»¿ªÀ» Àû´Â ¸Ş¼Òµå
-		int balance = getAccountBalance(account); //ÀÜ¾× ¹Ş¾Æ¿À±â
+	static void setAccountInfo(String account, String content, int money, char op){ 
+		int balance = getAccountBalance(account); 
 		
-		Connection conn = DBconnect(); //DB ¿¬°á!
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		int num = 1; //privacy key
-		String type = null; //ÀÔÃâ±İ
+		String type = null; 
 		
 		try{
-			pstmt = conn.prepareStatement("select max(num) from `" + account + "`"); //num Áß °¡Àå Å« °ª Ã£±â!
+			pstmt = conn.prepareStatement("select max(num) from `" + account + "`"); 
 			
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+			rs = pstmt.executeQuery(); 
 			
 			if(rs.next()){
 				num += rs.getInt("max(num)");
 			}
 			
-			if(op == '+'){ type = "ÀÔ±İ"; balance += money; }
-			else{		   type = "Ãâ±İ"; balance -= money; }
+			if(op == '+'){ type = "ì…ê¸ˆ"; balance += money; }
+			else{		   type = "ì¶œê¸ˆ"; balance -= money; }
 			
-			//³»¿ë Ãß°¡ÇÏ±â
+			//Add content
 			String sql = "insert into `" + account + "`" +
 						 "(num, type, money, content, date, time)values" +
 						 "(" + num + ", '" + type + "', " + money + ", '" + content + "', '" + nowDate + "', '" + nowTime + "')";
 			
-			pstmt.executeUpdate(sql); //¸í·É¹® ½ÇÇà!
+			pstmt.executeUpdate(sql); 
 				
-			//ÀÜ¾× ¼öÁ¤
+			//modify amount
 			sql = "update userinfo set balance:=" + balance + " where account_number = '" + account + "'";
 			
-			pstmt.executeUpdate(sql); //¸í·É¹® ½ÇÇà! 
+			pstmt.executeUpdate(sql); 
 		}
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 	}
 	
-	static int getMonthBenefit(){ //ÀÌ ´ŞÀÇ ÇıÅÃ ºÒ·¯¿À±â
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static int getMonthBenefit(){ //Bring the monthly benefit
+		Connection conn = DBconnect(); /
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		try{
-			nowDate = loadDate(); //ÇöÀç ³¯Â¥ ¹Ş±â
-			String now[] = nowDate.split("/"); //now[0] = ¿¬µµ, now[1] = ¿ù, now[2] = ÀÏ
+			nowDate = loadDate(); 
+			String now[] = nowDate.split("/"); //now[0] = yaer, now[1] = month, now[2] = day
 			
 			pstmt = conn.prepareStatement("select * from monthbenefit where month = " + now[1]);
 			
-			rs = pstmt.executeQuery(); //¸í·É¹® ½ÇÇà!
+			rs = pstmt.executeQuery(); 
 			
 			if(rs.next()){
 				return rs.getInt("benefit");
@@ -482,7 +452,7 @@ public class SE { //Software Engineer
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -490,11 +460,11 @@ public class SE { //Software Engineer
 		return -1;
 	}
 	
-	static String setTable(String account){ //»ç¿ë ³»¿ª
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static String setTable(String account){ 
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		String str = "";
 		
@@ -513,7 +483,7 @@ public class SE { //Software Engineer
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -521,11 +491,11 @@ public class SE { //Software Engineer
 		return str;
 	}
 	
-	static String setAccountNumber(){ //°èÁÂ ¹øÈ£ »ı¼º±â
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static String setAccountNumber(){ //Create Account
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null;  
+		ResultSet rs = null; 
 		
 		Random random = new Random();
 		
@@ -552,7 +522,7 @@ public class SE { //Software Engineer
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
@@ -561,78 +531,67 @@ public class SE { //Software Engineer
 		return null;
 	}
 	
-	static void createUser(String name, String accountNumber, String passwd, String hobby){ //À¯Àú »ı¼º ¸Ş¼Òµå
-		Connection conn = DBconnect(); //DB ¿¬°á!
+	static void createUser(String name, String accountNumber, String passwd, String hobby){ 
+		Connection conn = DBconnect(); 
 		
-		PreparedStatement pstmt = null; //SQL ±¸¹®À» ½ÇÇàÇÏ±â À§ÇÑ º¯¼öµé 
-		ResultSet rs = null; //Select ±¸¹® ½ÇÇàÇßÀ» ¶§ °á°ú¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		
 		boolean check = false;
 		
 		try{
-			//°èÁÂ Å×ÀÌºí ¸¸µé±â
+			//Create account table
 			pstmt = conn.prepareStatement("create table `" + accountNumber +
 										  "` (num int(11), type varchar(45), money int(11)," +
 										  " content varchar(45), date varchar(45), time varchar(45))");
 			pstmt.executeUpdate();
 			
-			//userinfo¿¡ Á¤º¸ ³Ö¾îÁÖ±â
+			//Input data in userinfo
 			pstmt = conn.prepareStatement("insert into userinfo " +
 					 "(name, account_number, password, balance, benefit)values" +
 					 "('" + name + "', '" + accountNumber + "', " + passwd + ", " + 0 + ", '" + hobby + "')");
 		
-			pstmt.executeUpdate(); //¸í·É¹® ½ÇÇà!
+			pstmt.executeUpdate(); 
 
 			check = true;
 		}
 		catch(Exception ex) {
 			System.out.println("handle the error");
 		}
-		finally{ //dbÀÚ¿ø ¹İÈ¯
+		finally{ 
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 	        if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 	        if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
 
-		//±âÃÊ ±İ¾× ÀÔ±İ 10¸¶³Í
 		if(check){
 			banking(accountNumber, "ATM", 100000, '+', false);
 		}
 	}
-	//DB Á¢±Ù ¸Ş¼Òµå ³¡ ******
 	
-	static void smartPhoneMessage(int money, char op){ //½º¸¶Æ®Æù¿¡ ÆË¾÷ ¶ç¿ì±â
-		if(op == '+'){ //ÀÔ±İ
-			JOptionPane.showMessageDialog(spf, money + "¿øÀÌ ÀÔ±İ µÇ¾ú½À´Ï´Ù", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
+	static void smartPhoneMessage(int money, char op){ 
+		if(op == '+'){ //deposit
+			JOptionPane.showMessageDialog(spf, money + "ì›ì´ ì…ê¸ˆ ë˜ì—ˆìŠµë‹ˆë‹¤", "ê±°ë˜ ì•ŒëŒ", JOptionPane.INFORMATION_MESSAGE);
 		}
-		else if(op == '-'){ //Ãâ±İ
-			JOptionPane.showMessageDialog(spf, money + "¿øÀÌ Ãâ±İ µÇ¾ú½À´Ï´Ù", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
+		else if(op == '-'){ //withdraw
+			JOptionPane.showMessageDialog(spf, money + "ì›ì´ ì¶œê¸ˆ ë˜ì—ˆìŠµë‹ˆë‹¤", "ê±°ë˜ ì•ŒëŒ", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
-	static String loadDate(){ //ÇöÀç ³¯Â¥ ºÒ·¯¿À±â
-		Calendar cal = Calendar.getInstance(); //´Ş·Â ÇÔ¼ö, ÇöÀç ³¯Â¥¿Í ½Ã°£À» ¾Ë ¼ö ÀÖ´Ù.
+	static String loadDate(){ 
+		Calendar cal = Calendar.getInstance(); 
 		
-		String str = cal.get(Calendar.YEAR) + "/" + //¿¬µµ
-					 (cal.get(Calendar.MONTH)+1) + "/" + //¿ù
-					 cal.get(Calendar.DATE); //ÀÏ
+		String str = cal.get(Calendar.YEAR) + "/" + 
+					 (cal.get(Calendar.MONTH)+1) + "/" + 
+					 cal.get(Calendar.DATE); 
 		return str;
 	}
 	
-	static String loadTime(){ //ÇöÀç ½Ã°£ ºÒ·¯¿À±â
-		Calendar cal = Calendar.getInstance(); //´Ş·Â ÇÔ¼ö, ÇöÀç ³¯Â¥¿Í ½Ã°£À» ¾Ë ¼ö ÀÖ´Ù.
+	static String loadTime(){ 
+		Calendar cal = Calendar.getInstance(); 
 		
-		String str = cal.get(Calendar.HOUR_OF_DAY) + ":" + //½Ã°£
-					 cal.get(Calendar.MINUTE); //ºĞ
+		String str = cal.get(Calendar.HOUR_OF_DAY) + ":" + 
+					 cal.get(Calendar.MINUTE); 
 		return str;
 	}
 }
-
-/*
-Âü°í 1 Á¢±Ù Á¦ÇÑÀÚ ¼³¸í
-	http://bvc12.tistory.com/139
-Âü°í 2 userInfo table = °í°´ Á¤º¸°¡ µé¾î ÀÖ´Â ÆÄÀÏ
-	String °í°´ ¸í | String °èÁÂ ¹øÈ£ (-Æ÷ÇÔ) | String ºñ¹Ğ¹øÈ£ (4ÀÚ¸®) | int ÀÜ¾× | int ÇıÅÃ
-Âü°í 3 °èÁÂ¹øÈ£ table = °í°´ °³ÀÎ Á¤º¸°¡ µé¾î ÀÖ´Â ÆÄÀÏ
-	int num | String type = ÀÔÃâ±İ | int money | String content = °Å·¡ Àå¼Ò | String date = ³¯Â¥ | String time = ½Ã°£
-*/
