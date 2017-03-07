@@ -18,34 +18,34 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
-class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPanel, shopPanelÀ¸·Î ±¸¼º)
-	CardLayout cardLayout = new CardLayout(10, 10); //¿©¹é, #Âü°í 1
-	Container c; //µÚ·Î°¡±â ¹öÆ°¿ë, #Âü°í 3
+class MainFrame extends JFrame{ static //Basic Frame. Consist of (atmPanel, createAccountPanel, shopPanel)
+	CardLayout cardLayout = new CardLayout(10, 10);
+	Container c; //Back to page Button
 	
-	private MenuBar mb = new MenuBar(); //¸Ş´º¹Ù #Âü°í 2
+	private MenuBar mb = new MenuBar(); //Menu Bar
 	
-	private Menu move = new Menu("MOVE"); //atmPanel, shopPanel »çÀÌ ÀÌµ¿
-	private Menu open = new Menu("OPEN"); //½º¸¶Æ®Æù È­¸é ¿­±â
+	private Menu move = new Menu("MOVE"); //move atmPanel to shopPanel 
+	private Menu open = new Menu("OPEN"); //open smart phone frame
 	
 	private MenuItem moveToAtm = new MenuItem("ATM");
 	private MenuItem moveToShop = new MenuItem("SHOP");
 	private Container con;
-	private ImageIcon icon_image, main_image;//ÆäÀÌÁö ¾ÆÀÌÄÜ ÀÌ¹ÌÁö »ğÀÔ 
+	private ImageIcon icon_image, main_image;//insert Image 
 	
 	static CheckboxMenuItem openSmart = new CheckboxMenuItem("Smart Phone", SE.smartState);
-	//¹öÆ°ÀÌº¥Æ®¸¦ ÁÖ±âÀ§ÇØ ´ÙÀ½ ÆĞ³ÎµéÀ» Àü¿ªÀ¸·Î  
+	
 	atmPanel atm = new atmPanel(); 
 	cashInPanel c_in = new cashInPanel();
-	cashOutPanel c_out = new cashOutPanel(); //CashOut Panel °ú ¿¬°á
+	cashOutPanel c_out = new cashOutPanel(); //Connect to CashOut Panel
 	createAccountPanel ca = new createAccountPanel();
 	useCashPanel useCash = new useCashPanel();
 	CashTransferPanel ctf = new CashTransferPanel();
-	MainFrame(){ //µğÆúÆ® Á¢±ÙÁ¦ÇÑÀÚ - °°Àº ÆĞÅ°Áö + ÀÚ±â °´Ã¼ ³»
+	MainFrame(){ 
 		setSize(500, 400);
 		setTitle("National Korea Bank");
-		icon_image = new ImageIcon("logo_small_2.jpg"); //Å¸ÀÌÆ²¹Ù¿¡ µé¾î°¥ ¾ÆÀÌÄÜ ÀÌ¹ÌÁö
+		icon_image = new ImageIcon("logo_small_2.jpg"); //Title bar Icon image
 		this.setIconImage(icon_image.getImage());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //¿­·ÁÀÖ´Â ¸ğµç À©µµ¿ì Á¾·á
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		setLayout(cardLayout); 
 		
@@ -59,9 +59,9 @@ class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPan
 		add(useCash, "useCash");
 		add(shop, "shop");
 		
-		setMenubar(); //¸Ş´º¹Ù ºÙ¿©ÁÖ±â
+		setMenubar(); 
 		
-		cardLayout.show(getContentPane(), "atm"); //±âº» È­¸é ¶ç¿ì±â
+		cardLayout.show(getContentPane(), "atm");
 		
 		atm.createAccountBtn.addActionListener(new createAccountListener());
 		atm.cashOut.addActionListener(new cashOutBtnListener());
@@ -77,22 +77,22 @@ class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPan
 	}
 	public void init(){
 		icon_image=new ImageIcon("logo_small_2.jpg");
-		con=this.getContentPane();//´ÙÁßÆĞ³Î¿¡¼­ÀÇ ±âº»ÀÛ¾÷ ¿µ¿ª È¹µæ
+		con=this.getContentPane();
 	}
 	private class backBtnListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if((e.getSource() == c_in.backBtn) || (e.getSource() == c_out.backBtn)
 					|| (e.getSource() == useCash.backBtn)|| (e.getSource() == ca.backBtn)
 					|| (e.getSource() == ctf.backBtn)){
-				cardLayout.show(getContentPane(), "atm"); //atmÈ­¸éÀ¸·Î µ¹¾Æ°¡±â
+				cardLayout.show(getContentPane(), "atm"); //Back to atm page
 			}
 		}
 	}
 	private class moveCashBtnListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 				if(e.getSource() == atm.cashMove){
-					CashTransferPanel.init(); //È­¸é ÃÊ±âÈ­
-					cardLayout.show(getContentPane(), "ctf"); //cashTransfer È­¸é
+					CashTransferPanel.init(); //Clear to page
+					cardLayout.show(getContentPane(), "ctf"); //cashTransfer page
 				}
 		}
 	}
@@ -100,8 +100,8 @@ class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPan
 	private class createAccountListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == atm.createAccountBtn){
-				createAccountPanel.init(); //ÃÊ±âÈ­
-				cardLayout.show(getContentPane(), "ca"); //caÈ­¸é
+				createAccountPanel.init(); //
+				cardLayout.show(getContentPane(), "ca"); //ca page
 			}
 		}
 	}
@@ -109,7 +109,7 @@ class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPan
 	private class cashInBtnListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == atm.cashIn){
-				cardLayout.show(getContentPane(), "c_in"); //c_in È­¸é
+				cardLayout.show(getContentPane(), "c_in"); //c_in page
 			}
 		}
 		
@@ -118,147 +118,114 @@ class MainFrame extends JFrame{ static //±âº» ÇÁ·¹ÀÓ (atmPanel, createAccountPan
 	private class cashOutBtnListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == atm.cashOut){
-				cardLayout.show(getContentPane(), "c_out"); //c_out È­¸é
+				cardLayout.show(getContentPane(), "c_out"); //c_out page
 			}
 		}
 		
 	}
 	
-	private class useCashBtnListener implements ActionListener{ //»ç¿ë³»¿ª È­¸é
+	private class useCashBtnListener implements ActionListener{ //Usage details page
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == atm.useCash){
-				if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®Æù ³»¿ª
+				if(SE.smartInterworkState){ 
 					useCashPanel.setAccount(SmartPhonePanel.userAccountNumber.getText());
-					cardLayout.show(getContentPane(), "useCash"); //useCash È­¸é
+					cardLayout.show(getContentPane(), "useCash"); //useCash page
 				}
-				else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or °èÁÂ¹øÈ£ or Ãë¼Ò
-					Object[] options = {"¿¬µ¿ÇÏ±â", "°èÁÂ", "Ãë¼Ò"};
+				else{ 
+					Object[] options = {"ì—°ë™í•˜ê¸°", "ê³„ì¢Œ", "ì·¨ì†Œ"};
 					
 					int select = JOptionPane.showOptionDialog(SE.mf, 
-							"È®ÀÎÇÒ °èÁÂ¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä.", "¼±ÅÃ", 
+							"í™•ì¸í•  ê³„ì¢Œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì„ íƒ", 
 							JOptionPane.YES_NO_CANCEL_OPTION, 
 							JOptionPane.QUESTION_MESSAGE, 
 							null, options, options[2]);
 					
-					if(select == 0){ //¿¬µ¿ÇÏ±â
-						if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-							JOptionPane.showMessageDialog(SE.mf, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+					if(select == 0){ //connect the smart phone
+						if(SE.smartState == false){ //turn off the smart phone
+							JOptionPane.showMessageDialog(SE.mf, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 						}
-						else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-							JOptionPane.showMessageDialog(SE.mf, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						else if(SE.smartLoginState == false){ //Isn't Login
+							JOptionPane.showMessageDialog(SE.mf, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 						}
-						else{ //¿¬µ¿ÇÏ±â
-							SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
+						else{ //connect
+							SE.smartInterworkState(true); 
 							
 							useCashPanel.setAccount(SmartPhonePanel.userAccountNumber.getText());
-							cardLayout.show(getContentPane(), "useCash"); //useCash È­¸é
+							cardLayout.show(getContentPane(), "useCash"); 
 						}
 					}
-					else if(select == 1){ //°èÁÂ °Å·¡ #Âü°í 4, Âü°í 5
-						String id = JOptionPane.showInputDialog(SE.mf, "ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "°èÁÂ ÀÔ·Â", JOptionPane.QUESTION_MESSAGE);
+					else if(select == 1){ //Account transaction
+						String id = JOptionPane.showInputDialog(SE.mf, "IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.", "ê³„ì¢Œ ì…ë ¥", JOptionPane.QUESTION_MESSAGE);
 						
-						if(id != null){ //ÀÔ·ÂÀÌ ÀÖÀ¸¸é
+						if(id != null){ 
 							JPasswordField passwd = new JPasswordField();
 							int ok = JOptionPane.showConfirmDialog(SE.mf, passwd, "Enter Password", JOptionPane.WARNING_MESSAGE);
 							
-							if(ok == JOptionPane.OK_OPTION){ //È®ÀÎ ¹öÆ° ´­·¶À» ½Ã
+							if(ok == JOptionPane.OK_OPTION){ 
 								String user = SE.checkUserInfo(id, passwd.getText());
 								
-								if(user == null){ //°í°´ÀÌ ¾Æ´Ï´Ù -> Á¢¼Ó ½ÇÆĞ ¾Ë¸²
-									JOptionPane.showMessageDialog(SE.mf, "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+								if(user == null){ //fail to connect
+									JOptionPane.showMessageDialog(SE.mf, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 								}
-								else{ //°í°´ÀÌ´Ù!!
+								else{ //success to connect
 									useCashPanel.setAccount(user);
-									cardLayout.show(getContentPane(), "useCash"); //useCash È­¸é
+									cardLayout.show(getContentPane(), "useCash"); 
 								}
 							}
 						}
 						
 					}
-					else if(select == 2){ } //Ãë¼Ò
+					else if(select == 2){ } //cancle
 				}
 			}
 		}
 	}
 	
-	private void setMenubar(){ //¸Ş´º¹Ù ºÙ¿©ÁÖ±â
+	private void setMenubar(){ //Add the MenuBar
 		setMenuBar(mb);
 		
 		mb.add(move);
 		mb.add(open);
 		
 		move.add(moveToAtm);
-		moveToAtm.addActionListener(new MoveMenuEvent()); //#Âü°í3
-		move.addSeparator(); //±¸ºĞÀÚ
+		moveToAtm.addActionListener(new MoveMenuEvent()); 
+		move.addSeparator(); 
 		move.add(moveToShop);
 		moveToShop.addActionListener(new MoveMenuEvent());
 		
 		open.add(openSmart);
-		openSmart.addItemListener(new OpenMenuEvent()); //#Âü°í 4
+		openSmart.addItemListener(new OpenMenuEvent()); 
 	}
 	
-	public class MoveMenuEvent implements ActionListener{ //¸Ş´º¹Ù ÀÌº¥Æ®
+	public class MoveMenuEvent implements ActionListener{ //Event of MenuBar
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == moveToAtm){
-				cardLayout.show(getContentPane(), "atm"); //È­¸é ¹Ù²Ù±â
+				cardLayout.show(getContentPane(), "atm"); 
 			}
 			else if(e.getSource() == moveToShop){
-				cardLayout.show(getContentPane(), "shop"); //È­¸é ¹Ù²Ù±â
+				cardLayout.show(getContentPane(), "shop"); 
 			}
 		}
 	}
 	
-	private class OpenMenuEvent implements ItemListener{ //#Âü°í 4
+	private class OpenMenuEvent implements ItemListener{ /
 		public void itemStateChanged(ItemEvent e) {
 			if(e.getStateChange() == ItemEvent.SELECTED){ //on
-				if(SE.smartState == false){ //´İÇôÀÖÀ» ¶§
-					SE.openSmart(); //½º¸¶Æ®Æù ¿­¾îÁÖ±â
+				if(SE.smartState == false){ 
+					SE.openSmart(); //If page is closed, open again.
 				}	
 			}
 			else if(e.getStateChange() == ItemEvent.DESELECTED){ //off
-				if(SE.smartState == true){ //¿­·ÁÀÖÀ» ¶§
-					SE.closeSmart(); //½º¸¶Æ®Æù ´İ¾ÆÁÖ±â
+				if(SE.smartState == true){ 
+					SE.closeSmart(); 
 				}
 			}
 		}
 	}
 }
-
 /*
-#Âü°í 1 cardLayout ¼³¸í
-	http://blog.naver.com/since890513/220181967925
-#Âü°í 2 ¸Ş´º¹Ù ¸¸µé±â
-	http://blog.naver.com/munjh4200/50176425790
-#Âü°í 3 ÀÌº¥Æ® (³»ºÎ/¿ÜºÎ/¹«¸í)
-	http://blog.naver.com/jjonghun1004/220759522958
-#Âü°í 4 comboboxMenu ÀÌº¥Æ®
-	http://kin.naver.com/qna/detail.nhn?d1id=1&dirId=1040201&docId=64571626&qb=amF2YSBDaGVja2JveE1lbnVJdGVtIGV2ZW50&enc=utf8&section=kin&rank=1&search_sort=0&spq=0&pid=TuxKewoRR00ssuLBQcCsssssssK-199922&sid=QaqSsqKwAMCM4REhspuv5w%3D%3D
-	
-*/
-
-/*
-# Âü°í5
-   ¿òÁ÷ÀÌ´Â ÀÌ¹ÌÁö gif »ğÀÔ 
-class MyPanel extends JPanel {
-		Image image;
-		
-		MyPanel() throws MalformedURLException {
-			image = Toolkit.getDefaultToolkit().createImage("img/funny.gif");  
-		    
-		}
-		
-		public void paintComponent(Graphics g) {  
-		    super.paintComponent(g);  
-		    if (image != null) {  
-		      g.drawImage(image, 0, 0, this);  
-		    }  
-		  } 
-	} 
-*/
-/*
- #Âü°í 6
- À½¼ºÆÄÀÏ »ğÀÔ 
+ #Reference.
+ Add the Voice File. 
  http://egloos.zum.com/icegeo/v/300509 
  http://blog.naver.com/PostView.nhn?blogId=helloworld8&logNo=220076589506&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView
- 
 */
