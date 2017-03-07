@@ -15,10 +15,10 @@ public class Btn_UI {
 	ImageIcon red_basic = new ImageIcon("red_basic.png");
 	ImageIcon red_pressed = new ImageIcon("red_pressed.png");
 	
-	public Btn_UI(){ //생성자가 필요하려나앙
+	public Btn_UI(){ 
 		
 	}
-	void myBtn(JButton Btn,String str,String btn_Color){ //!!!!!!!!!!!
+	void myBtn(JButton Btn,String str,String btn_Color){ 
 		Image resizeImage_basic;
 		Image resizeImage_pressed;
 		switch(btn_Color){
@@ -43,19 +43,15 @@ public class Btn_UI {
 		Dimension minDms = new Dimension(100,20);
 		Btn.setMaximumSize(maxDms);
 		Btn.setMinimumSize(minDms);
-		/*
-		int width =Btn.getMinimumSize().width;	//Btn의 사이즈를 받아옴
-		int height =Btn.getMinimumSize().height;
-		Btn.setIcon(new ImageIcon(resizeImage_basic.getScaledInstance(width, height, Image.SCALE_SMOOTH))); //Icon이미지를 변경해서 설정 기본
-		Btn.setPressedIcon(new ImageIcon(resizeImage_pressed.getScaledInstance(width, height, Image.SCALE_SMOOTH))); //Icon이미지를 변경해서 설정 누를때
-		*/
-		Btn.setBorderPainted(false); //버튼 경계선 제거
-		Btn.setFocusPainted(false); //포커스 제거
-		Btn.setContentAreaFilled(false); //버튼영역 배경 제거
+		
+		//button design
+		Btn.setBorderPainted(false); 
+		Btn.setFocusPainted(false); 
+		Btn.setContentAreaFilled(false); 
 		Btn.setText(str);
 		System.out.println(Btn.getMaximumSize()+"||||||");
 		//Btn.size
-		Btn.setHorizontalTextPosition(Btn.CENTER); //텍스트를 가운대로
-		//System.out.println("width"+width+"|||height"+height); //거리 조절
+		Btn.setHorizontalTextPosition(Btn.CENTER); //Central array of Text
+		//System.out.println("width"+width+"|||height"+height); //button distance
 	}
 }
