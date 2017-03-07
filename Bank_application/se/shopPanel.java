@@ -21,14 +21,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
-class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
+class shopPanel extends JPanel{ 
 	JLabel shop = new JLabel("SHOP");
 	
 	JLabel imageLabel = new JLabel();
 	
-	JPanel totalPanel = new JPanel(); //ÀüÃ¼ ÆĞ³Î, (image + payment)
-	JPanel imagePanel = new JPanel(); //ÀÌ¹ÌÁö ÆĞ³Î
-	JPanel paymentPanel = new JPanel(); //°Å·¡ ÆĞ³Î, (shopItem + pay)
+	JPanel totalPanel = new JPanel(); //ì „ì²´ íŒ¨ë„, (image + payment)
+	JPanel imagePanel = new JPanel(); //ì´ë¯¸ì§€ íŒ¨ë„
+	JPanel paymentPanel = new JPanel(); //ê±°ë˜ íŒ¨ë„, (shopItem + pay)
 	//.\\MainPageImg\\main_frame_gif.gif"
 	ImageIcon shop_gif = new ImageIcon(".\\Images\\MainPageImg\\main_frame_gif.gif");
 	ImageIcon dosmas_gif = new ImageIcon(".\\Images\\Shop\\dosmas.gif");
@@ -37,49 +37,49 @@ class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 	ImageIcon everland_gif = new ImageIcon(".\\Images\\Shop\\everland.gif");
 	ImageIcon spoany_gif = new ImageIcon(".\\Images\\Shop\\spoany.gif");
 	
-	JPanel shopItemPanel = new JPanel(); //»óÁ¡ & ¹°°Ç ÆĞ³Î
-	JPanel payPanel = new JPanel(); //°áÁ¦ ÆĞ³Î (ÇÕ°è + button)
-	JPanel buttonPanel = new JPanel(); //°áÁ¦ ÆĞ³ÎÀÇ ¹öÆ° ºÎºĞ (payment + cancel)
+	JPanel shopItemPanel = new JPanel(); //ìƒì  & ë¬¼ê±´ íŒ¨ë„
+	JPanel payPanel = new JPanel(); //ê²°ì œ íŒ¨ë„ (í•©ê³„ + button)
+	JPanel buttonPanel = new JPanel(); //ê²°ì œ íŒ¨ë„ì˜ ë²„íŠ¼ ë¶€ë¶„ (payment + cancel)
 	
-	String[] shopStr = {"»óÁ¡À» °ñ¶óÁÖ¼¼¿ä", "DosMas(µµ½º¸¶½º)", "´ë¼ºÀå", "¾È¾ç Çï½º", "CGV", "¿¡¹ö·£µå"}; //»óÁ¡ ¸ñ·Ï
-	DefaultListModel itemModel = new DefaultListModel(); //JList ÄÁÆ®·Ñ ÇÏ´Â °´Ã¼
+	String[] shopStr = {"ìƒì ì„ ê³¨ë¼ì£¼ì„¸ìš”", "DosMas(ë„ìŠ¤ë§ˆìŠ¤)", "ëŒ€ì„±ì¥", "ì•ˆì–‘ í—¬ìŠ¤", "CGV", "ì—ë²„ëœë“œ"}; //ìƒì  ëª©ë¡
+	DefaultListModel itemModel = new DefaultListModel(); 
 	DefaultListModel payModel = new DefaultListModel(); 
-	static int thisShopBenefit = 0; //ÇöÀç »óÁ¡ÀÇ ÇıÅÃ ¹øÈ£, 0 = »óÁ¡ ¾øÀ½, 1 = À½½Ä, 2 = ¿îµ¿
+	static int thisShopBenefit = 0; //í˜„ì¬ ìƒì ì˜ í˜œíƒ ë²ˆí˜¸, 0 = ìƒì  ì—†ìŒ, 1 = ìŒì‹, 2 = ìš´ë™
 	
-	JComboBox shopCb = new JComboBox(shopStr); //»óÁ¡ ÄŞº¸¹Ú½º
-	JList itemList = new JList(); //»óÁ¡¿¡ µû¸¥ ¹°Ç°&°¡°İ ¸®½ºÆ®
-	JList payList = new JList(); //³»¿ª ¸®½ºÆ®
+	JComboBox shopCb = new JComboBox(shopStr); //ìƒì  ì½¤ë³´ë°•ìŠ¤
+	JList itemList = new JList(); //ìƒì ì— ë”°ë¥¸ ë¬¼í’ˆ&ê°€ê²© ë¦¬ìŠ¤íŠ¸
+	JList payList = new JList(); //ë‚´ì—­ ë¦¬ìŠ¤íŠ¸
 
 	
 	int result = 0;
-	JLabel resultLabel = new JLabel("ÇÕ°è: " + result + "¿ø");
-	JButton paymentBtn = new JButton("Buy"); //°áÁ¦ ¹öÆ°
-	JButton cancelBtn = new JButton("Cancel"); //Ãë¼Ò ¹öÆ°
+	JLabel resultLabel = new JLabel("í•©ê³„: " + result + "ì›");
+	JButton paymentBtn = new JButton("Buy"); //ê²°ì œ ë²„íŠ¼
+	JButton cancelBtn = new JButton("Cancel"); //ì·¨ì†Œ ë²„íŠ¼
 	
-	Border border = BorderFactory.createTitledBorder(""); // Å×µÎ¸®Ãß°¡
+	Border border = BorderFactory.createTitledBorder(""); // í…Œë‘ë¦¬ì¶”ê°€
 	
 	shopPanel(){
 		setLayout(new BorderLayout());
-		add(shop, BorderLayout.NORTH); //¶óº§
-		shop.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		add(shop, BorderLayout.NORTH); 
+		shop.setHorizontalAlignment(JLabel.CENTER);=
 		add(totalPanel, BorderLayout.CENTER);
 		
-		//ÀüÃ¼ ÆĞ³Î, (image + payment)
+		//ì „ì²´ íŒ¨ë„, (image + payment)
 		totalPanel.setLayout(new GridLayout(2, 0));
-		totalPanel.add(imagePanel); //ÀÌ¹ÌÁö ÆĞ³Î
-		imagePanel.setBorder(border); //ÀÌ¹ÌÁö ºÎºĞ Ç¥½Ã¿ë
-		totalPanel.add(paymentPanel); //°Å·¡ ÆĞ³Î
+		totalPanel.add(imagePanel); //ì´ë¯¸ì§€ íŒ¨ë„
+		imagePanel.setBorder(border); //ì´ë¯¸ì§€ ë¶€ë¶„ í‘œì‹œìš©
+		totalPanel.add(paymentPanel); //ê±°ë˜ íŒ¨ë„
 		
-		//ShopÆĞ³ÎÀÇ ¼±ÅÃ Àü default ÀÌ¹ÌÁö_¸ŞÀÎ ÀÌ¹ÌÁö¿Í µ¿
+		//ShopíŒ¨ë„ì˜ ì„ íƒ ì „ default ì´ë¯¸ì§€_ë©”ì¸ ì´ë¯¸ì§€ì™€ ë™
 		imagePanel.add(imageLabel);
 		imageLabel.setIcon(shop_gif);		
 		
-		//°Å·¡ ÆĞ³Î, (shopItem + pay)
+		//ê±°ë˜ íŒ¨ë„, (shopItem + pay)
 		paymentPanel.setLayout(new GridLayout(0, 2));
-		paymentPanel.add(shopItemPanel); //»óÁ¡ & ¹°°Ç ÆĞ³Î
-		paymentPanel.add(payPanel); //°áÁ¦ ÆĞ³Î
+		paymentPanel.add(shopItemPanel); //ìƒì  & ë¬¼ê±´ íŒ¨ë„
+		paymentPanel.add(payPanel); //ê²°ì œ íŒ¨ë„
 		
-		//»óÁ¡ & ¹°°Ç ÆĞ³Î
+		//ìƒì  & ë¬¼ê±´ íŒ¨ë„
 		shopItemPanel.setLayout(new BorderLayout());
 		shopItemPanel.add(shopCb, BorderLayout.NORTH);
 		shopItemPanel.add(new JScrollPane(itemList), BorderLayout.CENTER);
@@ -88,14 +88,14 @@ class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		shopCb.addActionListener(new ShopClicked());
 		itemList.addMouseListener(new ItemListClicked());
 		
-		//°áÁ¦ ÆĞ³Î (ÇÕ°è + ³»¿ª + ¹öÆ° ÆĞ³Î)
+		//ê²°ì œ íŒ¨ë„ (í•©ê³„ + ë‚´ì—­ + ë²„íŠ¼ íŒ¨ë„)
 		payPanel.setLayout(new BorderLayout());
-		resultLabel.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		resultLabel.setHorizontalAlignment(JLabel.CENTER); 
 		payPanel.add(resultLabel, BorderLayout.NORTH);
 		
-		payPanel.add(payList, BorderLayout.CENTER); //¸ÕÀú ºÙÀÎ ´ÙÀ½ ½ºÅ©·Ñ ºÙ¿©¾ßµÊ
-		JScrollPane scrollPane = new JScrollPane(payList); //½ºÅ©·Ñ »ı¼º
-		payPanel.add(scrollPane, BorderLayout.CENTER); //½ºÅ©·Ñ ºÙÀÌ±â
+		payPanel.add(payList, BorderLayout.CENTER); 
+		JScrollPane scrollPane = new JScrollPane(payList); //ìŠ¤í¬ë¡¤ ìƒì„±
+		payPanel.add(scrollPane, BorderLayout.CENTER); //ìŠ¤í¬ë¡¤ ë¶™ì´ê¸°
 		
 		payList.addMouseListener(new PayListClicked());
 		
@@ -110,63 +110,63 @@ class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		cancelBtn.addMouseListener(new CancelClicked());
 	}
 	
-	private class ShopClicked implements ActionListener{ //»óÁ¡ °í¸£±â #Âü°í 1
+	private class ShopClicked implements ActionListener{ //ìƒì  ê³ ë¥´ê¸°
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == shopCb){
 				itemModel.clear();
 				payModel.clear();
 				setResult(null, 'x');
 				
-				switch(shopCb.getSelectedIndex()){ //»óÇ°(space)|(space)°¡°İ("¿ø") Çü½ÄÀ¸·Î ÀÛ¼º				
-				case 1: //µµ½º¸¶½º
-					thisShopBenefit = 1; //À½½Ä
-					itemModel.addElement("±âº» ºÎ¸®¶Ç | 3000¿ø");
-					itemModel.addElement("Ä¡Å² ºÎ¸®¶Ç | 4000¿ø");
-					itemModel.addElement("¸Å¿î ºÎ¸®¶Ç | 5000¿ø");
-					itemModel.addElement("ºÎ¸®¶Ç ¼¼Æ® | 8000¿ø");					
-					imagePanel.add(imageLabel);		// µµ½º¸¶½º ÆäÀÌÁö·Î ¿À¸é µµ½º¸¶½º ÀÌ¹ÌÁö·Î ¹Ù±Ï´Ù.
-					imageLabel.setIcon(dosmas_gif);	//			
+				switch(shopCb.getSelectedIndex()){ //ìƒí’ˆ(space)|(space)ê°€ê²©("ì›") í˜•ì‹		
+				case 1: //ë„ìŠ¤ë§ˆìŠ¤
+					thisShopBenefit = 1; //ìŒì‹
+					itemModel.addElement("ê¸°ë³¸ ë¶€ë¦¬ë˜ | 3000ì›");
+					itemModel.addElement("ì¹˜í‚¨ ë¶€ë¦¬ë˜ | 4000ì›");
+					itemModel.addElement("ë§¤ìš´ ë¶€ë¦¬ë˜ | 5000ì›");
+					itemModel.addElement("ë¶€ë¦¬ë˜ ì„¸íŠ¸ | 8000ì›");					
+					imagePanel.add(imageLabel);		
+					imageLabel.setIcon(dosmas_gif);			
 					itemList.setModel(itemModel);
 					break;
-				case 2: //´ë¼ºÀå
-					thisShopBenefit = 1; //À½½Ä
-					itemModel.addElement("Â¥Àå¸é | 2000¿ø");
-					itemModel.addElement("Â«»Í | 3000¿ø");
-					itemModel.addElement("ÅÁ¼öÀ°(¼Ò) | 5000¿ø");
-					itemModel.addElement("ÅÁ¼öÀ°(Áß) | 8000¿ø");
-					itemModel.addElement("ÅÁ¼öÀ°(´ë) | 10000¿ø");
-					itemModel.addElement("±ñ¼î»õ¿ì | 13000¿ø");
-					itemModel.addElement("´ë¼ºÀå ÇªÁü ¼¼Æ® | 20000¿ø");
+				case 2: //ëŒ€ì„±ì¥
+					thisShopBenefit = 1; //ìŒì‹
+					itemModel.addElement("ì§œì¥ë©´ | 2000ì›");
+					itemModel.addElement("ì§¬ë½• | 3000ì›");
+					itemModel.addElement("íƒ•ìˆ˜ìœ¡(ì†Œ) | 5000ì›");
+					itemModel.addElement("íƒ•ìˆ˜ìœ¡(ì¤‘) | 8000ì›");
+					itemModel.addElement("íƒ•ìˆ˜ìœ¡(ëŒ€) | 10000ì›");
+					itemModel.addElement("ê¹ì‡¼ìƒˆìš° | 13000ì›");
+					itemModel.addElement("ëŒ€ì„±ì¥ í‘¸ì§ ì„¸íŠ¸ | 20000ì›");
 					imagePanel.add(imageLabel);		
 					imageLabel.setIcon(daeseong_gif);
 					itemList.setModel(itemModel);
 					break;
-				case 3: //Çï½ºÀå
-					thisShopBenefit = 2; //¿îµ¿
-					itemModel.addElement("ÇÏ·ç ÀÌ¿ë±Ç | 2000¿ø");
-					itemModel.addElement("ÀÏÁÖÀÏ ÀÌ¿ë±Ç | 10000¿ø");
-					itemModel.addElement("ÇÑ´Ş ÀÌ¿ë±Ç | 20000¿ø");
-					itemModel.addElement("¼¼´Ş ÀÌ¿ë±Ç | 30000¿ø");
+				case 3: //í—¬ìŠ¤ì¥
+					thisShopBenefit = 2; //ìš´ë™
+					itemModel.addElement("í•˜ë£¨ ì´ìš©ê¶Œ | 2000ì›");
+					itemModel.addElement("ì¼ì£¼ì¼ ì´ìš©ê¶Œ | 10000ì›");
+					itemModel.addElement("í•œë‹¬ ì´ìš©ê¶Œ | 20000ì›");
+					itemModel.addElement("ì„¸ë‹¬ ì´ìš©ê¶Œ | 30000ì›");
 					imagePanel.add(imageLabel);		
 					imageLabel.setIcon(spoany_gif);
 					itemList.setModel(itemModel);
 					break;
 				case 4: //CGV
-					thisShopBenefit = 3; //¿µÈ­
-					itemModel.addElement("¿µÈ­ Æ¼ÄÏ | 7000¿ø");
-					itemModel.addElement("CGV ÄŞº¸ | 10000¿ø");
-					itemModel.addElement("¿ÀÂ¡¾î ÄŞº¸| 12000¿ø");
+					thisShopBenefit = 3; //ì˜í™”
+					itemModel.addElement("ì˜í™” í‹°ì¼“ | 7000ì›");
+					itemModel.addElement("CGV ì½¤ë³´ | 10000ì›");
+					itemModel.addElement("ì˜¤ì§•ì–´ ì½¤ë³´| 12000ì›");
 					imagePanel.add(imageLabel);		
 					imageLabel.setIcon(cgv_gif);
 					itemList.setModel(itemModel);
 					break;
-				case 5: //³îÀÌ°ø¿ø
-					thisShopBenefit = 4; //³îÀÌ°ø¿ø
-					itemModel.addElement("ÀÚÀ¯ ÀÌ¿ë±Ç | 20000¿ø");
-					itemModel.addElement("Æ®·¢ 5 | 9000¿ø");
-					itemModel.addElement("¿ÀÈÄ ÀÌ¿ë±Ç | 8000¿ø");
-					itemModel.addElement("¼Ø»çÅÁ | 2000¿ø");
-					itemModel.addElement("ÆÇ´Ù ¸Ó¸®¶ì | 10000¿ø");
+				case 5: //ë†€ì´ê³µì›
+					thisShopBenefit = 4; //ë†€ì´ê³µì›
+					itemModel.addElement("ììœ  ì´ìš©ê¶Œ | 20000ì›");
+					itemModel.addElement("íŠ¸ë™ 5 | 9000ì›");
+					itemModel.addElement("ì˜¤í›„ ì´ìš©ê¶Œ | 8000ì›");
+					itemModel.addElement("ì†œì‚¬íƒ• | 2000ì›");
+					itemModel.addElement("íŒë‹¤ ë¨¸ë¦¬ë  | 10000ì›");
 					imagePanel.add(imageLabel);		
 					imageLabel.setIcon(everland_gif);
 					itemList.setModel(itemModel);
@@ -181,107 +181,107 @@ class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		}
 	}
 	
-	private void setResult(String str, char op){ //ÇÕ°è ±¸ÇÏ±â
-		if(str == null){ //ÃÊ±âÈ­
+	private void setResult(String str, char op){ //í•©ê³„ êµ¬í•˜ê¸°
+		if(str == null){ 
 			result = 0;
 		}
 		else{
-			String s[] = str.split("\\|"); //°¡°İ¸¸ »©¿À±â, s[0] = »óÇ°, s[1] = °¡°İ
-			s[1] = s[1].replace("¿ø", "").trim();
+			String s[] = str.split("\\|"); // s[0] = ìƒí’ˆ, s[1] = ê°€ê²©
+			s[1] = s[1].replace("ì›", "").trim();
 			
-			if(op == '+'){ //´õÇÏ±â!
+			if(op == '+'){ 
 				result += Integer.valueOf(s[1]);
 			}
-			else if(op == '-'){ //»©±â!
+			else if(op == '-'){ 
 				result -= Integer.valueOf(s[1]);
 			}
 		}
-		resultLabel.setText(("ÇÕ°è: " + result + "¿ø"));
+		resultLabel.setText(("í•©ê³„: " + result + "ì›"));
 	}
 	
-	private class ItemListClicked extends MouseAdapter{ //¹°°Ç °í¸£±â
+	private class ItemListClicked extends MouseAdapter{ //ë¬¼ê±´ ê³ ë¥´ê¸°
 		public void mouseClicked(MouseEvent e){
 			if(e.getClickCount() == 2){
-				payModel.addElement(itemList.getSelectedValue()); //¹°°Ç ³Ö±â!
+				payModel.addElement(itemList.getSelectedValue()); 
 				payList.setModel(payModel);
 				
 				payList.setSelectedIndex(payModel.getSize()-1); 
-				payList.ensureIndexIsVisible(payModel.getSize()-1); //¿©±â¸¦ ±âÁØÀ¸·Î ½ºÅ©·Ñ ³»¸®±â, #Âü°í 2
+				payList.ensureIndexIsVisible(payModel.getSize()-1); 
 				
-				setResult((String)itemList.getSelectedValue(), '+'); //ÇÕ°è ±¸ÇÏ±â
+				setResult((String)itemList.getSelectedValue(), '+'); //í•©ê³„ êµ¬í•˜ê¸°
 			}
 		}
 	}
 	
-	private class PayListClicked extends MouseAdapter{ //¹°°Ç »©±â
+	private class PayListClicked extends MouseAdapter{ //ë¬¼ê±´ ë¹¼ê¸°
 		public void mouseClicked(MouseEvent e){
 			if(e.getClickCount() == 2){
 				if(payList.getSelectedIndex() >= 0){
-					setResult((String)payList.getSelectedValue(), '-'); //ÇÕ°è ±¸ÇÏ±â
+					setResult((String)payList.getSelectedValue(), '-'); //í•©ê³„ êµ¬í•˜ê¸°
 					
-					payModel.remove(payList.getSelectedIndex()); //¹°°Ç Á¦°Å!
+					payModel.remove(payList.getSelectedIndex()); //ë¬¼ê±´ ì œê±°
 				}
 			}
 		}
 	}
 	
-	private class BuyClicked extends MouseAdapter{ //Buy ¹öÆ°
+	private class BuyClicked extends MouseAdapter{ //Buy ë²„íŠ¼
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == paymentBtn){
-				if(result == 0){ //±¸¸Å ÇÒ°Ô ¾øÀ½, #Âü°í 3
-					JOptionPane.showMessageDialog(totalPanel, "¹°°ÇÀ» °ñ¶óÁÖ¼¼¿ä", "±¸¸Å ¿À·ù", JOptionPane.WARNING_MESSAGE);
+				if(result == 0){ 
+					JOptionPane.showMessageDialog(totalPanel, "ë¬¼ê±´ì„ ê³¨ë¼ì£¼ì„¸ìš”", "êµ¬ë§¤ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 				}
 				else{					
-					if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®ÆùÀ¸·Î °è»ê
-						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), shopCb.getSelectedItem() + "", result, '-', true)){ //°Å·¡ ÁøÇà
-							payClear(); //³»¿ª ÃÊ±âÈ­
+					if(SE.smartInterworkState){ 
+						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), shopCb.getSelectedItem() + "", result, '-', true)){ //ê±°ë˜ ì§„í–‰
+							payClear(); 
 						}
 					}
-					else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or Ãë¼Ò
-						Object[] options = {"¿¬µ¿ÇÏ±â", "°èÁÂ °Å·¡", "Ãë¼Ò"};
+					else{ 
+						Object[] options = {"ì—°ë™í•˜ê¸°", "ê³„ì¢Œ ê±°ë˜", "ì·¨ì†Œ"};
 						int select = JOptionPane.showOptionDialog(totalPanel, 
-								"°áÁ¦ ¼ö´ÜÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.", "°áÁ¦ ¼±ÅÃ", 
+								"ê²°ì œ ìˆ˜ë‹¨ì„ ì„ íƒí•´ì£¼ì„¸ìš”.", "ê²°ì œ ì„ íƒ", 
 								JOptionPane.YES_NO_CANCEL_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, 
 								null, options, options[2]);
 						
-						if(select == 0){ //¿¬µ¿ÇÏ±â
-							if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-								JOptionPane.showMessageDialog(totalPanel, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						if(select == 0){ //ì—°ë™í•˜ê¸°
+							if(SE.smartState == false){ 
+								JOptionPane.showMessageDialog(totalPanel, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-								JOptionPane.showMessageDialog(totalPanel, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+							else if(SE.smartLoginState == false){ 
+								JOptionPane.showMessageDialog(totalPanel, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else{ //¿¬µ¿ÇÏ±â
-								SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
+							else{ 
+								SE.smartInterworkState(true); 
 								
-								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), shopCb.getSelectedItem() + "", result, '-', true)){ //°Å·¡ ÁøÇà
-									payClear(); //³»¿ª ÃÊ±âÈ­
+								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), shopCb.getSelectedItem() + "", result, '-', true)){ //ê±°ë˜ ì§„í–‰
+									payClear(); 
 								}
 							}
 						}
-						else if(select == 1){ //°èÁÂ °Å·¡ #Âü°í 4, Âü°í 5
-							String id = JOptionPane.showInputDialog(totalPanel, "ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "°èÁÂ ÀÔ·Â", JOptionPane.QUESTION_MESSAGE);
+						else if(select == 1){ 
+							String id = JOptionPane.showInputDialog(totalPanel, "IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.", "ê³„ì¢Œ ì…ë ¥", JOptionPane.QUESTION_MESSAGE);
 							
-							if(id != null){ //ÀÔ·ÂÀÌ ÀÖÀ¸¸é
+							if(id != null){
 								JPasswordField passwd = new JPasswordField();
 								int ok = JOptionPane.showConfirmDialog(totalPanel, passwd, "Enter Password", JOptionPane.WARNING_MESSAGE);
 								
-								if(ok == JOptionPane.OK_OPTION){ //È®ÀÎ ¹öÆ° ´­·¶À» ½Ã
+								if(ok == JOptionPane.OK_OPTION){ 
 									String user = SE.checkUserInfo(id, passwd.getText());
 									
-									if(user == null){ //°í°´ÀÌ ¾Æ´Ï´Ù -> Á¢¼Ó ½ÇÆĞ ¾Ë¸²
-										JOptionPane.showMessageDialog(totalPanel, "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+									if(user == null){ 
+										JOptionPane.showMessageDialog(totalPanel, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 									}
-									else{ //°í°´ÀÌ´Ù!! -> °Å·¡, ½º¸¶Æ®Æù°ú °°Àº °èÁÂ¸é ¾Ë¶÷ ¶ß°Ô
+									else{ 
 										if((SE.smartLoginState == true) && (SmartPhonePanel.userAccountNumber.getText().equals(user))){ 
-											if(SE.banking(user, shopCb.getSelectedItem() + "", result, '-', true)){ //°Å·¡ ÁøÇà
-												payClear(); //³»¿ª ÃÊ±âÈ­
+											if(SE.banking(user, shopCb.getSelectedItem() + "", result, '-', true)){ 
+												payClear(); 
 											}
 										}
 										else{
-											if(SE.banking(user, shopCb.getSelectedItem() + "", result, '-', false)){ //°Å·¡ ÁøÇà
-												payClear(); //³»¿ª ÃÊ±âÈ­
+											if(SE.banking(user, shopCb.getSelectedItem() + "", result, '-', false)){ 
+												payClear(); 
 											}
 										}
 									}
@@ -289,37 +289,37 @@ class shopPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 							}
 							
 						}
-						else if(select == 2){ } //Ãë¼Ò
+						else if(select == 2){ } //cancle
 					}
 				}
 			}
 		}
 	}
 	
-	private class CancelClicked extends MouseAdapter{ //Cancel ¹öÆ°
+	private class CancelClicked extends MouseAdapter{ //Cancel ë²„íŠ¼
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == cancelBtn){
-				payClear(); //³»¿ª ÃÊ±âÈ­
+				payClear(); //ë‚´ì—­ ì´ˆê¸°í™”
 			}
 		}
 	}
 	
-	private void payClear(){ //³»¿ª ÃÊ±âÈ­
-		payModel.clear(); //ÃÊ±âÈ­ÇÏ±â
+	private void payClear(){ //ë‚´ì—­ ì´ˆê¸°í™”
+		payModel.clear(); //ì´ˆê¸°í™”í•˜ê¸°
 		payList.setModel(payModel);
 		setResult(null, '0');
 	}
 }
 
 /*
-Âü°í 1 JList »ç¿ë¹ı
+ì°¸ê³  1 JList ì‚¬ìš©ë²•
 	http://blog.naver.com/zladnrms/220216712385
-Âü°í 2 List ³¡ º¸±â
+ì°¸ê³  2 List ë ë³´ê¸°
 	http://blog.daum.net/dmno21/29
-Âü°í 3 ±âº» ´ëÈ­ »óÀÚ
+ì°¸ê³  3 ê¸°ë³¸ ëŒ€í™” ìƒì
  	http://hallang.tistory.com/137
- Âü°í 4 ÀÔ·Â ¹Ş´Â ´ëÈ­»óÀÚ
+ ì°¸ê³  4 ì…ë ¥ ë°›ëŠ” ëŒ€í™”ìƒì
  	http://hallang.tistory.com/136
- Âü°í 5 ÆĞ½º¿öµå ´ëÈ­»óÀÚ
+ ì°¸ê³  5 íŒ¨ìŠ¤ì›Œë“œ ëŒ€í™”ìƒì
  	http://stackoverflow.com/questions/8881213/joptionpane-to-get-password
 */
