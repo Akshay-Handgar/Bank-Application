@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.*;			// ÀÔ·Â µ¥ÀÌÅÍÀÇ ÇüÅÂ ½Çº°
-import java.util.regex.*;	// ÀÔ·Â µ¥ÀÌÅÍÀÇ ÇüÅÂ ½Äº°
+import java.io.*;			
+import java.util.regex.*;	
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -31,45 +31,45 @@ class cashOutPanel extends JPanel {
 	ImageIcon cashoutImage = new ImageIcon(".\\Images\\Cashout\\cashoutImage.jpg");
 	JLabel imageLabel = new JLabel();
 	
-	JButton ThirtyTW = new JButton("30000       £Ü");
-	JButton FiftyTW = new JButton("50000       £Ü");
-	JButton HTW = new JButton("100000     £Ü");
-	JButton HFiftyTW = new JButton("150000     £Ü");
-	JButton TwoHTW = new JButton("200000     £Ü");
-	JButton ThreeHTW = new JButton("300000     £Ü");
+	JButton ThirtyTW = new JButton("30000       ï¿¦");
+	JButton FiftyTW = new JButton("50000       ï¿¦");
+	JButton HTW = new JButton("100000     ï¿¦");
+	JButton HFiftyTW = new JButton("150000     ï¿¦");
+	JButton TwoHTW = new JButton("200000     ï¿¦");
+	JButton ThreeHTW = new JButton("300000     ï¿¦");
 
-	JButton FourHTW = new JButton("400000  £Ü");
-	JButton FiveHTW = new JButton("500000  £Ü");
-	JButton SixHTW = new JButton("600000   £Ü");
-	JButton SevenHTW = new JButton("700000   £Ü");
-	JButton MW = new JButton("1000000  £Ü");
-	JButton ETC = new JButton("±â               Å¸");
+	JButton FourHTW = new JButton("400000  ï¿¦");
+	JButton FiveHTW = new JButton("500000  ï¿¦");
+	JButton SixHTW = new JButton("600000   ï¿¦");
+	JButton SevenHTW = new JButton("700000   ï¿¦");
+	JButton MW = new JButton("1000000  ï¿¦");
+	JButton ETC = new JButton("ê¸°               íƒ€");
 
-	JPanel mixedPanel = new JPanel(); // cashOutPanelÀÇ °¡Àå ¿Ü°û ÆĞ³Î
-	JPanel C_OutWarningPanel = new JPanel(); // Ãâ±İÆĞ³Î °æ°í ¸Ş¼¼Áö ÆĞ³Î_°¡¿îµ¥
-	JPanel LCashoutPanel = new JPanel(); // Ãâ±İ ±İ¾× ¼±ÅÃ ÆĞ³Î_¿ŞÂÊ
-	JPanel RCashoutPanel = new JPanel(); // Ãâ±İ ±İ¾× ¼±ÅÃ ÆĞ³Î_¿À¸¥ÂÊ
-	JPanel C_OUTPanel = new JPanel(); // ±İ¾× Ç¥½Ã ¹× Ãâ±İ¹öÆ° ÆĞ³Î
+	JPanel mixedPanel = new JPanel(); // cashOutPanelì˜ ê°€ì¥ ì™¸ê³½ íŒ¨ë„
+	JPanel C_OutWarningPanel = new JPanel(); // ì¶œê¸ˆíŒ¨ë„ ê²½ê³  ë©”ì„¸ì§€ íŒ¨ë„_ê°€ìš´ë°
+	JPanel LCashoutPanel = new JPanel(); // ì¶œê¸ˆ ê¸ˆì•¡ ì„ íƒ íŒ¨ë„_ì™¼ìª½
+	JPanel RCashoutPanel = new JPanel(); // ì¶œê¸ˆ ê¸ˆì•¡ ì„ íƒ íŒ¨ë„_ì˜¤ë¥¸ìª½
+	JPanel C_OUTPanel = new JPanel(); // ê¸ˆì•¡ í‘œì‹œ ë° ì¶œê¸ˆë²„íŠ¼ íŒ¨ë„
 	
 	protected JTextField ETC_Field;
 
 	DefaultListModel payModel = new DefaultListModel();
 
 	int result = 0;
-	JLabel resultLabel = new JLabel("Ãâ±İ ±İ¾× : " + result + " ¿ø");
-	JButton C_OUTBtn = new JButton("Cash Out"); // Ãâ±İ ¹öÆ°
-	JButton cancelBtn = new JButton("Cancel"); // Ãë¼Ò ¹öÆ°
-	JButton backBtn = new JButton("µÚ·Î°¡±â"); //µÚ·Î°¡±â ¹öÆ°
+	JLabel resultLabel = new JLabel("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");
+	JButton C_OUTBtn = new JButton("Cash Out"); // ì¶œê¸ˆ ë²„íŠ¼
+	JButton cancelBtn = new JButton("Cancel"); // ì·¨ì†Œ ë²„íŠ¼
+	JButton backBtn = new JButton("ë’¤ë¡œê°€ê¸°"); //ë’¤ë¡œê°€ê¸° ë²„íŠ¼
 	
-	Border border = BorderFactory.createTitledBorder(""); // Å×µÎ¸® Ãß°¡
+	Border border = BorderFactory.createTitledBorder(""); // í…Œë‘ë¦¬ ì¶”ê°€
 
 	cashOutPanel() {
 		setLayout(new BorderLayout());
-		cashoutLabel.setHorizontalAlignment(JLabel.CENTER); // ¶óº§ Áß¾ÓÁ¤·Ä
+		cashoutLabel.setHorizontalAlignment(JLabel.CENTER); 
 		add(cashoutLabel, BorderLayout.NORTH); //
 		add(mixedPanel, BorderLayout.CENTER);
 
-		mixedPanel.setLayout(new BorderLayout()); // ¾Æ·§ºÎºĞ ÆĞ³ÎÀ» 3¿­·Î Á¶Á¤
+		mixedPanel.setLayout(new BorderLayout()); 
 		mixedPanel.add(C_OutWarningPanel, BorderLayout.CENTER);
 		mixedPanel.add(LCashoutPanel, BorderLayout.WEST);
 		mixedPanel.add(RCashoutPanel, BorderLayout.EAST);
@@ -79,20 +79,17 @@ class cashOutPanel extends JPanel {
 		C_OutWarningPanel.add(imageLabel);
 		imageLabel.setIcon(cashoutImage);
 
-		// (±İ¾×Ç¥½Ã + Ãâ±İ¹öÆ° ÆĞ³Î)
 		C_OUTPanel.setLayout(new GridLayout(3, 0, 5, 5));
-		resultLabel.setHorizontalAlignment(JLabel.CENTER); // ¶óº§ Áß¾ÓÁ¤·Ä	
-		C_OUTPanel.add(resultLabel, BorderLayout.NORTH); // Ãâ±İ ±İ¾× Ç¥½Ã ·¹ÀÌºí
-		C_OUTPanel.add(C_OUTBtn); // Ãâ±İ ¹öÆ°
-		C_OUTPanel.add(backBtn); // µÚ·Î°¡±â ¹öÆ°
+		resultLabel.setHorizontalAlignment(JLabel.CENTER); 
+		C_OUTPanel.add(resultLabel, BorderLayout.NORTH); // ì¶œê¸ˆ ê¸ˆì•¡ í‘œì‹œ ë ˆì´ë¸”
+		C_OUTPanel.add(C_OUTBtn); // ì¶œê¸ˆ ë²„íŠ¼
+		C_OUTPanel.add(backBtn); // ë’¤ë¡œê°€ê¸° ë²„íŠ¼
 		
 		
 
-		C_OUTBtn.addMouseListener(new CashOutClicked()); // CashOut¹öÆ° Å¬¸¯ ÇÒ¶§ ¹İÀÀ
+		C_OUTBtn.addMouseListener(new CashOutClicked()); // CashOutë²„íŠ¼ í´ë¦­ í• ë•Œ ë°˜ì‘
 
-		LCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); // ¼¼·Î 6Ä­ °¡·Î´Â ÀÏ·Ä·Î
-																// ÁöÁ¤ÇØÁÖ±â À§ÇØ 0À¸·Î
-																// ¼³Á¤_Ãâ±İ ¿ŞÂÊ
+		LCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); 
 		LCashoutPanel.add(ThirtyTW);
 		LCashoutPanel.add(FiftyTW);
 		LCashoutPanel.add(HTW);
@@ -107,7 +104,7 @@ class cashOutPanel extends JPanel {
 		TwoHTW.addMouseListener(new Clicked());
 		ThreeHTW.addMouseListener(new Clicked());
 
-		RCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); // Ãâ±İ_¿À¸¥ÂÊ
+		RCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); 
 		RCashoutPanel.add(FourHTW);
 		RCashoutPanel.add(FiveHTW);
 		RCashoutPanel.add(SixHTW);
@@ -125,111 +122,98 @@ class cashOutPanel extends JPanel {
 
 	private class Clicked extends MouseAdapter {
 		public void mouseClicked(MouseEvent c) {
-			System.out.println("±İ¾× ¼±ÅÃµÊ");
+			System.out.println("ê¸ˆì•¡ ì„ íƒë¨");
 			if(c.getSource() == ThirtyTW){
 				if(SE.smartState == true){
 					result = 30000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == FiftyTW){
 				if(SE.smartState == true){
 					result = 50000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == HTW){
 				if(SE.smartState == true){
 					result = 100000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == HFiftyTW){
 				if(SE.smartState == true){
 					result = 150000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == TwoHTW){
 				if(SE.smartState == true){
 					result = 200000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == ThreeHTW){
 				if(SE.smartState == true){
 					result = 300000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			
 			if(c.getSource() == FourHTW){
 				if(SE.smartState == true){
 					result = 400000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == FiveHTW){
 				if(SE.smartState == true){
 					result = 500000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == SixHTW){
 				if(SE.smartState == true){
 					result = 600000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == SevenHTW){
 				if(SE.smartState == true){
 					result = 700000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			else if(c.getSource() == MW){
 				if(SE.smartState == true){
 					result = 1000000;
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");}}
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");}}
 			
 			else if(c.getSource() == ETC){
 				if(SE.smartState == true){
-					input = JOptionPane.showInputDialog(mixedPanel, "±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä", "¿¹) 100000"); // °ıÈ£ ¾ÕÂÊ¿¡ mixedPanelÀ» ³ÖÀ½À¸·Î½á ÆĞ³ÎÀÇ °¡¿îµ¥¿¡ ´ëÈ­»óÀÚ »ı¼º
-					System.out.println("\"" + input + "\"" + "ÀÇ ±İ¾×À» ÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+					input = JOptionPane.showInputDialog(mixedPanel, "ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”", "ì˜ˆ) 100000"); //íŒ¨ë„ì˜ ê°€ìš´ë°ì— ëŒ€í™”ìƒì ìƒì„±
+					System.out.println("\"" + input + "\"" + "ì˜ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					result = Integer.parseInt(input);
-					resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");
-					
-					/*   if (Pattern.matches("[0-9]", input)){
-						    System.out.printf("¼ıÀÚ");
-							resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");    
-					   }
-						   else if (Pattern.matches("[A-Z]",input))
-						    System.out.printf("´ë¹®ÀÚ");
-						   else if (Pattern.matches("[a-z]", input))
-						    System.out.printf("¼Ò¹®ÀÚ");
-						   else if (Pattern.matches("[°¡-ÆR]", input))
-						    System.out.println("ÇÑ±Û");
-						   else
-						    System.out.printf("±âÅ¸");*/
+					resultLabel.setText("ì¶œê¸ˆ ê¸ˆì•¡ : " + result + " ì›");
 				}
 				
 			}
 		}
 	}
 	
-	private class CashOutClicked extends MouseAdapter{ //CashOut ¹öÆ°
+	private class CashOutClicked extends MouseAdapter{ //CashOut utton
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == C_OUTBtn){
 				
-				if(result == 0){ //°áÀçÇÒ ±İ¾× ¾øÀ½, #Âü°í 3
-					JOptionPane.showMessageDialog(mixedPanel, "±İ¾×À» ¼³Á¤ÇÏ½Ê½Ã¿À!", "Ãâ±İ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+				if(result == 0){ 
+					JOptionPane.showMessageDialog(mixedPanel, "ê¸ˆì•¡ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤!", "ì¶œê¸ˆ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 				}
 				else{					
-					if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®ÆùÀ¸·Î °è»ê
-						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '-', true)){ //°Å·¡ ÁøÇà , ÀÔ±İÀ» ÇÒ½Ã¿£ '-'¸¦ +·Î ¹Ù²Ù¸é µÈ´Ù.
-							System.out.println("°Å·¡ ¿Ï·á!" + result + "Ãâ±İ µÇ¾ú½À´Ï´Ù."); 
-						} // ¹Ì¿Ï·á½Ã false
+					if(SE.smartInterworkState){ 
+						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '-', true)){ //ì…ê¸ˆì„ í• ì‹œì—” '-'ë¥¼ +ë¡œ
+							System.out.println("ê±°ë˜ ì™„ë£Œ!" + result + "ì¶œê¸ˆ ë˜ì—ˆìŠµë‹ˆë‹¤."); 						
+} // ë¯¸ì™„ë£Œì‹œ false
 					}
-					else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or Ãë¼Ò
-						Object[] options = {"¿¬µ¿ÇÏ±â", "Ãë¼Ò"};
+					else{ 
+						Object[] options = {"ì—°ë™í•˜ê¸°", "ì·¨ì†Œ"};
 						int select = JOptionPane.showOptionDialog(mixedPanel, 
-								"¿¬µ¿ÇÏ½Ã°Ú½À´Ï±î?", "°áÁ¦ ¿À·ù", 
+								"ì—°ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²°ì œ ì˜¤ë¥˜", 
 								JOptionPane.YES_NO_CANCEL_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, 
 								null, options, options[1]);
 						
-						if(select == 1){ } //Ãë¼Ò
-						else{ //¿¬µ¿ÇÏ±â
-							if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-								JOptionPane.showMessageDialog(mixedPanel, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						if(select == 1){ } //ì·¨ì†Œ
+						else{ //ì—°ë™í•˜ê¸°
+							if(SE.smartState == false){ 
+								JOptionPane.showMessageDialog(mixedPanel, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-								JOptionPane.showMessageDialog(mixedPanel, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+							else if(SE.smartLoginState == false){ 
+								JOptionPane.showMessageDialog(mixedPanel, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else{ //¿¬µ¿ÇÏ±â
-								SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
+							else{ 
+								SE.smartInterworkState(true);
 								
-								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '-', true)){ //°Å·¡ ÁøÇà
+								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '-', true)){
 								}
 							}
 						}
