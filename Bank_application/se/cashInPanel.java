@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.*;			// ÀÔ·Â µ¥ÀÌÅÍÀÇ ÇüÅÂ ½Çº°
-import java.util.regex.*;	// ÀÔ·Â µ¥ÀÌÅÍÀÇ ÇüÅÂ ½Äº°
+import java.io.*;			
+import java.util.regex.*;	
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -31,34 +31,32 @@ class cashInPanel extends JPanel {
 	
 	JLabel cashinLabel = new JLabel("Choose the amount of money you want to put in.");
 
-	JButton CashingIn = new JButton("±İ   ¾×   ¼³   Á¤");
-	JPanel mixedPanel = new JPanel(); // cashOutPanelÀÇ °¡Àå ¿Ü°û ÆĞ³Î
-	JPanel C_InWarningPanel = new JPanel(); // Ãâ±İÆĞ³Î °æ°í ¸Ş¼¼Áö ÆĞ³Î_°¡¿îµ¥
-	JPanel LCashoutPanel = new JPanel(); // Ãâ±İ ±İ¾× ¼±ÅÃ ÆĞ³Î_¿ŞÂÊ
-	JPanel RCashoutPanel = new JPanel(); // Ãâ±İ ±İ¾× ¼±ÅÃ ÆĞ³Î_¿À¸¥ÂÊ
-	JPanel C_INPanel = new JPanel(); // ±İ¾× Ç¥½Ã ¹× Ãâ±İ¹öÆ° ÆĞ³Î
+	JButton CashingIn = new JButton("ê¸ˆ   ì•¡   ì„¤   ì •");
+	JPanel mixedPanel = new JPanel(); // cashOutPanelì˜ ê°€ì¥ ì™¸ê³½ íŒ¨ë„
+	JPanel C_InWarningPanel = new JPanel(); // ì¶œê¸ˆíŒ¨ë„ ê²½ê³  ë©”ì„¸ì§€ íŒ¨ë„_ê°€ìš´ë°
+	JPanel LCashoutPanel = new JPanel(); // ì¶œê¸ˆ ê¸ˆì•¡ ì„ íƒ íŒ¨ë„_ì™¼ìª½
+	JPanel RCashoutPanel = new JPanel(); // ì¶œê¸ˆ ê¸ˆì•¡ ì„ íƒ íŒ¨ë„_ì˜¤ë¥¸ìª½
+	JPanel C_INPanel = new JPanel(); // ê¸ˆì•¡ í‘œì‹œ ë° ì¶œê¸ˆë²„íŠ¼ íŒ¨ë„
 	
 	protected JTextField CashIn_Field;
 
-	//DefaultListModel payModel = new DefaultListModel();
-
 	int result = 0;
-	JLabel resultLabel = new JLabel("ÀÔ±İ ±İ¾× : " + result + " ¿ø");
-	JButton C_INBtn = new JButton("Cash In"); // Ãâ±İ ¹öÆ°
-	JButton cancelBtn = new JButton("Cancel"); // Ãë¼Ò ¹öÆ°
-	JButton backBtn = new JButton("µÚ·Î°¡±â"); //µÚ·Î°¡±â ¹öÆ°
+	JLabel resultLabel = new JLabel("ì…ê¸ˆ ê¸ˆì•¡ : " + result + " ì›");
+	JButton C_INBtn = new JButton("Cash In"); // ì¶œê¸ˆ ë²„íŠ¼
+	JButton cancelBtn = new JButton("Cancel"); // ì·¨ì†Œ ë²„íŠ¼
+	JButton backBtn = new JButton("ë’¤ë¡œê°€ê¸°"); //ë’¤ë¡œê°€ê¸° ë²„íŠ¼
 
-	Border border = BorderFactory.createTitledBorder(""); // Å×µÎ¸® Ãß°¡
+	Border border = BorderFactory.createTitledBorder(""); // í…Œë‘ë¦¬ ì¶”ê°€
 
 	cashInPanel() {
 		setLayout(new BorderLayout());
-		cashinLabel.setHorizontalAlignment(JLabel.CENTER); // ¶óº§ Áß¾ÓÁ¤·Ä
+		cashinLabel.setHorizontalAlignment(JLabel.CENTER); 
 		add(cashinLabel, BorderLayout.NORTH); //
 		add(mixedPanel, BorderLayout.CENTER);
 
 		C_InWarningPanel.setBorder(border);
 
-		mixedPanel.setLayout(new BorderLayout()); // ¾Æ·§ºÎºĞ ÆĞ³ÎÀ» 3¿­·Î Á¶Á¤
+		mixedPanel.setLayout(new BorderLayout()); 
 		mixedPanel.add(C_InWarningPanel, BorderLayout.CENTER);
 		mixedPanel.add(LCashoutPanel, BorderLayout.WEST);
 		mixedPanel.add(RCashoutPanel, BorderLayout.EAST);
@@ -67,21 +65,17 @@ class cashInPanel extends JPanel {
 		C_InWarningPanel.add(imageLabel);
 		imageLabel.setIcon(cashoutImage);
 
-		// (±İ¾×Ç¥½Ã + Ãâ±İ¹öÆ° ÆĞ³Î)
 		C_INPanel.setLayout(new GridLayout(3, 0, 5, 5));
-		resultLabel.setHorizontalAlignment(JLabel.CENTER); // ¶óº§ Áß¾ÓÁ¤·Ä	
-		C_INPanel.add(resultLabel); // Ãâ±İ ±İ¾× Ç¥½Ã ·¹ÀÌºí
-		C_INPanel.add(C_INBtn); // Ãâ±İ ¹öÆ°
-		C_INPanel.add(backBtn); // µÚ·Î°¡±â ¹öÆ°
+		resultLabel.setHorizontalAlignment(JLabel.CENTER); 
+		C_INPanel.add(resultLabel); // ì¶œê¸ˆ ê¸ˆì•¡ í‘œì‹œ ë ˆì´ë¸”
+		C_INPanel.add(C_INBtn); // ì¶œê¸ˆ ë²„íŠ¼
+		C_INPanel.add(backBtn); // ë’¤ë¡œê°€ê¸° ë²„íŠ¼
 		
-		C_INBtn.addMouseListener(new CashInClicked()); // CashOut¹öÆ° Å¬¸¯ ÇÒ¶§ ¹İÀÀ
+		C_INBtn.addMouseListener(new CashInClicked()); // CashOutë²„íŠ¼ í´ë¦­ í• ë•Œ ë°˜ì‘
 
-		LCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); // ¼¼·Î 6Ä­ °¡·Î´Â ÀÏ·Ä·Î    //¿©±â±îÁö ¼öÁ¤ÇßÀ½
-																// ÁöÁ¤ÇØÁÖ±â À§ÇØ 0À¸·Î																
+		LCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); 								
 
-
-
-		RCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); // Ãâ±İ_¿À¸¥ÂÊ
+		RCashoutPanel.setLayout(new GridLayout(6, 0, 5, 5)); 
 
 		RCashoutPanel.add(CashingIn);
 		
@@ -90,66 +84,53 @@ class cashInPanel extends JPanel {
 
 	private class Clicked extends MouseAdapter {
 		public void mouseClicked(MouseEvent c) {
-			System.out.println("±İ¾× ÀÔ±İ ±İ¾× ¼³Á¤µÊ");		
+			System.out.println("ê¸ˆì•¡ ì…ê¸ˆ ê¸ˆì•¡ ì„¤ì •ë¨");		
 			
 			if(c.getSource() == CashingIn){
 				if(SE.smartState == true){
-					input = JOptionPane.showInputDialog(mixedPanel, "±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä", "¿¹) 100000"); // °ıÈ£ ¾ÕÂÊ¿¡ mixedPanelÀ» ³ÖÀ½À¸·Î½á ÆĞ³ÎÀÇ °¡¿îµ¥¿¡ ´ëÈ­»óÀÚ »ı¼º
-					System.out.println("\"" + input + "\"" + "ÀÇ ±İ¾×À» ÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+					input = JOptionPane.showInputDialog(mixedPanel, "ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”", "ì˜ˆ) 100000");
+					System.out.println("\"" + input + "\"" + "ì˜ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 					result = Integer.parseInt(input);
-					resultLabel.setText("ÀÔ±İ ±İ¾× : " + result + " ¿ø");
-					
-					/*   if (Pattern.matches("[0-9]", input)){
-						    System.out.printf("¼ıÀÚ");
-							resultLabel.setText("Ãâ±İ ±İ¾× : " + result + " ¿ø");    
-					   }
-						   else if (Pattern.matches("[A-Z]",input))
-						    System.out.printf("´ë¹®ÀÚ");
-						   else if (Pattern.matches("[a-z]", input))
-						    System.out.printf("¼Ò¹®ÀÚ");
-						   else if (Pattern.matches("[°¡-ÆR]", input))
-						    System.out.println("ÇÑ±Û");
-						   else
-						    System.out.printf("±âÅ¸");*/
+					resultLabel.setText("ì…ê¸ˆ ê¸ˆì•¡ : " + result + " ì›");
 				}
 				
 			}
 		}
 	}
 	
-	private class CashInClicked extends MouseAdapter{ //CashOut ¹öÆ°
+	private class CashInClicked extends MouseAdapter{ //CashOut button
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource() == C_INBtn){
 				
-				if(result == 0){ //°áÀçÇÒ ±İ¾× ¾øÀ½, #Âü°í 3
-					JOptionPane.showMessageDialog(mixedPanel, "±İ¾×À» ¼³Á¤ÇÏ½Ê½Ã¿À!", "ÀÔ±İ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+				if(result == 0){ 
+					JOptionPane.showMessageDialog(mixedPanel, "ê¸ˆì•¡ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤!", "ì…ê¸ˆ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 				}
 				else{					
-					if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®ÆùÀ¸·Î °è»ê
-						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '+', true)){ //°Å·¡ ÁøÇà , ÀÔ±İÀ» ÇÒ½Ã¿£ '-'¸¦ +·Î ¹Ù²Ù¸é µÈ´Ù.
-							System.out.println("°Å·¡ ¿Ï·á!" + result + "ÀÔ±İ µÇ¾ú½À´Ï´Ù."); 
-						} // ¹Ì¿Ï·á½Ã false
+					if(SE.smartInterworkState){ 
+						if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '+', true)){
+							System.out.println("ê±°ë˜ ì™„ë£Œ!" + result + "ì…ê¸ˆ ë˜ì—ˆìŠµë‹ˆë‹¤."); 
+						} 
 					}
-					else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or Ãë¼Ò
-						Object[] options = {"¿¬µ¿ÇÏ±â", "Ãë¼Ò"};
+					else{ 
+						Object[] options = {"ì—°ë™í•˜ê¸°", "ì·¨ì†Œ"};
 						int select = JOptionPane.showOptionDialog(mixedPanel, 
-								"¿¬µ¿ÇÏ½Ã°Ú½À´Ï±î?", "°áÁ¦ ¿À·ù", 
+								"ì—°ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²°ì œ ì˜¤ë¥˜", 
 								JOptionPane.YES_NO_CANCEL_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, 
 								null, options, options[1]);
 						
-						if(select == 1){ } //Ãë¼Ò
-						else{ //¿¬µ¿ÇÏ±â
-							if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-								JOptionPane.showMessageDialog(mixedPanel, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						if(select == 1){ } //cancle
+						else{ 
+							if(SE.smartState == false){ 
+								JOptionPane.showMessageDialog(mixedPanel, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-								JOptionPane.showMessageDialog(mixedPanel, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+							else if(SE.smartLoginState == false){ 
+								JOptionPane.showMessageDialog(mixedPanel, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else{ //¿¬µ¿ÇÏ±â
-								SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
+							else{ 
+								SE.smartInterworkState(true); 
 								
-								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '+', true)){ //°Å·¡ ÁøÇà
+								if(SE.banking(SmartPhonePanel.userAccountNumber.getText(), "ATM", result, '+', true)){ 
 								}
 							}
 						}
