@@ -15,33 +15,33 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-class SmartPhonePanel extends JPanel { //½º¸¶Æ®Æù Á¢¼Ó ÇÁ·¹ÀÓ, °³ÀÎ Á¤º¸¿Í ÇıÅÃ µîÀ» º¼ ¼ö ÀÖ´Ù.
+class SmartPhonePanel extends JPanel { //Smart phone Access Frame. 
 	JLabel smartPhoneLabel = new JLabel("Android");
-	JPanel totalPanel = new JPanel(); //ÀÜ¾×,°èÁÂ¹øÈ£,ÇıÅÃ
-	JPanel pictogramPanel = new JPanel(); //ÇÈÅä±×·¥
+	JPanel totalPanel = new JPanel(); //Balance, Account, Benefit
+	JPanel pictogramPanel = new JPanel();
 	
-	JPanel balancePanel = new JPanel(); //ÀÜ¾×
-	JPanel accountNumberPanel = new JPanel(); //°èÁÂ¹øÈ£
-	JPanel benefitPanel = new JPanel(); //ÇıÅÃ
+	JPanel balancePanel = new JPanel(); 
+	JPanel accountNumberPanel = new JPanel(); 
+	JPanel benefitPanel = new JPanel(); 
 	
-	JButton myBenefitBtn = new JButton("³» ÇıÅÃ º¸±â");
-	JButton bankBtn = new JButton("ÀºÇà");
+	JButton myBenefitBtn = new JButton("ë‚´ í˜œíƒ ë³´ê¸°");
+	JButton bankBtn = new JButton("ì€í–‰");
 	JButton homeBtn = new JButton("HOME");
-	static JButton interworkBtn = new JButton("¿¬µ¿ÇÏ±â"); //SE¿¡¼­ »ç¿ë
+	static JButton interworkBtn = new JButton("ì—°ë™í•˜ê¸°"); 
 	
-	Border balanceBorder = BorderFactory.createTitledBorder("ÀÜ¾×");
-	Border acoountBorder = BorderFactory.createTitledBorder("°èÁÂ");
-	Border benefitBorder = BorderFactory.createTitledBorder("ÀÌ ´ŞÀÇ ÇıÅÃ");
+	Border balanceBorder = BorderFactory.createTitledBorder("ì”ì•¡");
+	Border acoountBorder = BorderFactory.createTitledBorder("ê³„ì¢Œ");
+	Border benefitBorder = BorderFactory.createTitledBorder("ì´ ë‹¬ì˜ í˜œíƒ");
 	
-	static JLabel userName = new JLabel("°í°´ ¸í"); 
-	static JLabel userAccountNumber = new JLabel("°èÁÂ ¹øÈ£"); 
-	static JLabel balanceLabel = new JLabel("ÀÜ¾×"); 
-	static JLabel benefit = new JLabel("ÇıÅÃ");
+	static JLabel userName = new JLabel("ê³ ê° ëª…"); 
+	static JLabel userAccountNumber = new JLabel("ê³„ì¢Œ ë²ˆí˜¸"); 
+	static JLabel balanceLabel = new JLabel("ì”ì•¡"); 
+	static JLabel benefit = new JLabel("í˜œíƒ");
 	
 	public SmartPhonePanel(CardLayout cardLayout, Container c){
 		setLayout(new BorderLayout());
 		add(smartPhoneLabel,BorderLayout.NORTH);
-		smartPhoneLabel.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		smartPhoneLabel.setHorizontalAlignment(JLabel.CENTER); //ë¼ë²¨ ì¤‘ì•™ì •ë ¬
 		add(totalPanel,BorderLayout.CENTER);
 		add(pictogramPanel,BorderLayout.SOUTH);
 		
@@ -59,34 +59,34 @@ class SmartPhonePanel extends JPanel { //½º¸¶Æ®Æù Á¢¼Ó ÇÁ·¹ÀÓ, °³ÀÎ Á¤º¸¿Í ÇıÅÃ 
 		benefitPanel.add(benefit);
 		benefitPanel.add(myBenefitBtn);
 		
-		myBenefitBtn.addActionListener(new ActionListener(){ //³» ÇıÅÃ ¹öÆ°
+		myBenefitBtn.addActionListener(new ActionListener(){ //ë‚´ í˜œíƒ ë²„íŠ¼
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == myBenefitBtn){ //·Î±×ÀÎ ²÷±â, °í°´ Á¤º¸ ÃÊ±âÈ­, È¨È­¸éÀ¸·Î
+				if(e.getSource() == myBenefitBtn){ //ë¡œê·¸ì¸ ëŠê¸°, ê³ ê° ì •ë³´ ì´ˆê¸°í™”, í™ˆí™”ë©´ìœ¼ë¡œ
 					String account = userAccountNumber.getText();
-					String str[] = {"ÇÒÀÎ ¾øÀ½", "À½½Ä ÇÒÀÎ", "¿îµ¿ ÇÒÀÎ", "¿µÈ­ ÇÒÀÎ", "³îÀÌ ÇÒÀÎ"}; //ÇÒÀÎ Á¾·ù
+					String str[] = {"í• ì¸ ì—†ìŒ", "ìŒì‹ í• ì¸", "ìš´ë™ í• ì¸", "ì˜í™” í• ì¸", "ë†€ì´ í• ì¸"}; //Kind of benefit
 					int benefit = SE.getAccountBenefit(account);
 					
-					JOptionPane.showMessageDialog(benefitPanel, str[benefit], "³» ÇıÅÃ", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(benefitPanel, str[benefit], "ë‚´ í˜œíƒ", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
 		
-		homeBtn.addActionListener(new ActionListener(){ //È¨ ¹öÆ°
+		homeBtn.addActionListener(new ActionListener(){ //Home button
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == homeBtn){ //·Î±×ÀÎ ²÷±â, °í°´ Á¤º¸ ÃÊ±âÈ­, È¨È­¸éÀ¸·Î
-					SE.smartLoginState(false); //·Î±×ÀÎ ²÷±â
-					cardLayout.show(c, "access"); //Á¢¼Ó È­¸éÀ¸·Î ¹Ù²Ù±â
+				if(e.getSource() == homeBtn){
+					SE.smartLoginState(false); 
+					cardLayout.show(c, "access"); 
 				}
 			}
 		});
 		
-		interworkBtn.addActionListener(new ActionListener(){ //¿¬µ¿ ¹öÆ°
+		interworkBtn.addActionListener(new ActionListener(){ //interlock
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == interworkBtn){
-					if(SE.smartInterworkState == false){ //¿¬µ¿ ¾ÈÇÑ »óÅÂ -> ¿¬µ¿ÇÏ±â
+					if(SE.smartInterworkState == false){ 
 						SE.smartInterworkState(true);
 					}
-					else{ //¿¬µ¿ÇÑ »óÅÂ -> ¿¬µ¿ ²÷±â
+					else{ 
 						SE.smartInterworkState(false);
 					}
 				}
@@ -98,24 +98,24 @@ class SmartPhonePanel extends JPanel { //½º¸¶Æ®Æù Á¢¼Ó ÇÁ·¹ÀÓ, °³ÀÎ Á¤º¸¿Í ÇıÅÃ 
 		pictogramPanel.add(interworkBtn);
 	}
 	
-	static void initUserInfo(String account){ //·Î±×ÀÎ½Ã °í°´ Á¤º¸ ¹Ş¾Æ¿À±â
+	static void initUserInfo(String account){ //if login status, bring the customer data 
 		userName.setText(SE.getAccountName(account));
 		userAccountNumber.setText(account);
-		balanceLabel.setText(SE.getAccountBalance(account) + " ¿ø");
+		balanceLabel.setText(SE.getAccountBalance(account) + " ì›");
 		
-		String str[] = {"ÇıÅÃ ¾øÀ½", "À½½Ä!", "¿îµ¿!", "¿µÈ­!", "³îÀÌ°ø¿ø!"};
+		String str[] = {"í˜œíƒ ì—†ìŒ", "ìŒì‹!", "ìš´ë™!", "ì˜í™”!", "ë†€ì´ê³µì›!"};
 		benefit.setText(str[SE.monthBenefit]);
 	}
 	
-	static void delUserInfo(){ //·Î±×¾Æ¿ô½Ã °í°´ Á¤º¸ Áö¿ì±â
-		userName.setText("°í°´ Á¤º¸ ¾øÀ½");
-		userAccountNumber.setText("°í°´ Á¤º¸ ¾øÀ½");
-		balanceLabel.setText("°í°´ Á¤º¸ ¾øÀ½");
-		benefit.setText("°í°´ Á¤º¸ ¾øÀ½");
+	static void delUserInfo(){ //logout
+		userName.setText("ê³ ê° ì •ë³´ ì—†ìŒ");
+		userAccountNumber.setText("ê³ ê° ì •ë³´ ì—†ìŒ");
+		balanceLabel.setText("ê³ ê° ì •ë³´ ì—†ìŒ");
+		benefit.setText("ê³ ê° ì •ë³´ ì—†ìŒ");
 	}
 
-	static void setBalance(int balance){ //ÀÜ¾× °»½Å
-		balanceLabel.setText(balance + " ¿ø");
+	static void setBalance(int balance){ //update balance
+		balanceLabel.setText(balance + " ì›");
 	}
 }
 
