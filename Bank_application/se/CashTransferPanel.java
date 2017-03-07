@@ -12,17 +12,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class CashTransferPanel extends JPanel{
-	JLabel account = new JLabel("°èÁÂ");
-	JLabel money = new JLabel("±Ý¾×");
-	JLabel passwd = new JLabel("ºñ¹ø");
+	JLabel account = new JLabel("ê³„ì¢Œ"); //Account
+	JLabel money = new JLabel("ê¸ˆì•¡"); //Amount
+	JLabel passwd = new JLabel("ë¹„ë²ˆ"); //Pwd
 	
 	static JTextField accountTF = new JTextField(13);
 	static JTextField moneyTF = new JTextField(13);
 	static JPasswordField passwdTF = new JPasswordField(13);
 	
 	
-	JButton cashTransferBtn = new JButton("¼Û±Ý");
-	JButton backBtn = new JButton("µÚ·Î°¡±â");
+	JButton cashTransferBtn = new JButton("ì†¡ê¸ˆ"); //Remittance
+	JButton backBtn = new JButton("ë’¤ë¡œê°€ê¸°"); //page Back
 	
 	JPanel accountPanel = new JPanel();
 	JPanel moneyPanel = new JPanel();
@@ -39,11 +39,11 @@ public class CashTransferPanel extends JPanel{
 		passwdPanel.add(passwd);
 		passwdPanel.add(passwdTF);
 				
-		//¹öÆ°Ãß°¡
+		//Add button
 		btnPanel.add(cashTransferBtn);
 		btnPanel.add(backBtn);
 		
-		//ÆÐ³ÎÃß°¡
+		//Add Panel
 		add(accountPanel);
 		add(moneyPanel);
 		add(passwdPanel);
@@ -59,62 +59,62 @@ public class CashTransferPanel extends JPanel{
 	private class CTFBtnClicked extends MouseAdapter{ 
 		public void mouseClicked(MouseEvent e) {
 			if(accountTF.getText().equals("")||moneyTF.getText().equals("")||passwdTF.getText().equals("")){
-				JOptionPane.showMessageDialog(accountPanel, "ºóÄ­À» ÀÔ·ÂÇØÁÖ¼¼¿ä", "°Å·¡ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(accountPanel, "ë¹ˆì¹¸ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”", "ê±°ëž˜ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 			}
 			else{
 				if(e.getSource() == cashTransferBtn){
 					result=Integer.parseInt(moneyTF.getText());
-					if(SE.smartInterworkState){ //¿¬µ¿ ÁßÀÌ¸é ½º¸¶Æ®ÆùÀ¸·Î °è»ê
-						JOptionPane.showMessageDialog(accountPanel, "°Å·¡ ¿Ï·á!", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
-						SE.banking(SmartPhonePanel.userAccountNumber.getText(), SE.getAccountName(SmartPhonePanel.userAccountNumber.getText())+" ATM ¼Û±Ý", result, '-', true); //¿¬µ¿µÈ´ë¼­´Â Ãâ±Ý
-						SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ÀÔ±Ý", result, '+', false); //¹Þ´ÂÂÊ ÀÔ±Ý
+					if(SE.smartInterworkState){ //If it is interlocked, calculate it with a smartphone.
+						JOptionPane.showMessageDialog(accountPanel, "ê±°ëž˜ ì™„ë£Œ!", "ê±°ëž˜ ì•ŒëžŒ", JOptionPane.INFORMATION_MESSAGE);
+						SE.banking(SmartPhonePanel.userAccountNumber.getText(), SE.getAccountName(SmartPhonePanel.userAccountNumber.getText())+" ATM ì†¡ê¸ˆ", result, '-', true); //ì—°ë™ëœëŒ€ì„œëŠ” ì¶œê¸ˆ
+						SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ìž…ê¸ˆ", result, '+', false); //ë°›ëŠ”ìª½ ìž…ê¸ˆ
 					}
-					else{ //¿¬µ¿ ¾ÈÇÔ -> ¿¬µ¿ÇÏ±â or Ãë¼Ò
-						Object[] options = {"¿¬µ¿ÇÏ±â", "°èÁÂ", "Ãë¼Ò"};
+					else{ //Isn't interlocked -> connect OR cancle
+						Object[] options = {"ì—°ë™í•˜ê¸°", "ê³„ì¢Œ", "ì·¨ì†Œ"};
 						int select = JOptionPane.showOptionDialog(accountPanel, 
-								"¿¬µ¿ÇÏ½Ã°Ú½À´Ï±î?", "°áÁ¦ ¼ö´Ü ¼±ÅÃ", 
+								"ì—°ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²°ì œ ìˆ˜ë‹¨ ì„ íƒ", 
 								JOptionPane.YES_NO_CANCEL_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, 
 								null, options, options[2]);
 						
-						if(select == 0){//¿¬µ¿ÇÏ±â
-							if(SE.smartState == false){ //½º¸¶Æ®Æù ¾ÈÄÑÁ®ÀÖÀ½
-								JOptionPane.showMessageDialog(accountPanel, "½º¸¶Æ®ÆùÀ» ÄÑÁÖ¼¼¿ä", "½º¸¶Æ®Æù ¿À·ù", JOptionPane.WARNING_MESSAGE);
+						if(select == 0){//Interlocked with Smart Phone
+							if(SE.smartState == false){ //Turn off the Smart Phone
+								JOptionPane.showMessageDialog(accountPanel, "ìŠ¤ë§ˆíŠ¸í°ì„ ì¼œì£¼ì„¸ìš”", "ìŠ¤ë§ˆíŠ¸í° ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else if(SE.smartLoginState == false){ //·Î±×ÀÎ ¾ÈµÇÀÖÀ½
-								JOptionPane.showMessageDialog(accountPanel, "·Î±×ÀÎ ÇØÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+							else if(SE.smartLoginState == false){ //Isn't Login
+								JOptionPane.showMessageDialog(accountPanel, "ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 							}
-							else{ //¿¬µ¿ÇÏ±â
-								SE.smartInterworkState(true); //¿¬µ¿ÇÏ±â
-								JOptionPane.showMessageDialog(accountPanel, "°Å·¡ ¿Ï·á!", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
-								SE.banking(SmartPhonePanel.userAccountNumber.getText(), SE.getAccountName(SmartPhonePanel.userAccountNumber.getText())+" ATM ¼Û±Ý", result, '-', true); //¿¬µ¿µÈ´ë¼­´Â Ãâ±Ý
-								SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ÀÔ±Ý", result, '+', false); //¹Þ´ÂÂÊ ÀÔ±Ý
+							else{ //Interlock
+								SE.smartInterworkState(true); 
+								JOptionPane.showMessageDialog(accountPanel, "ê±°ëž˜ ì™„ë£Œ!", "ê±°ëž˜ ì•ŒëžŒ", JOptionPane.INFORMATION_MESSAGE);
+								SE.banking(SmartPhonePanel.userAccountNumber.getText(), SE.getAccountName(SmartPhonePanel.userAccountNumber.getText())+" ATM ì†¡ê¸ˆ", result, '-', true); 
+								SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ìž…ê¸ˆ", result, '+', false); 
 							}
 						}
-						else if(select == 1){ //°èÁÂ
-							String id = JOptionPane.showInputDialog(accountPanel, "ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "°èÁÂ ÀÔ·Â", JOptionPane.QUESTION_MESSAGE);
+						else if(select == 1){ //Account
+							String id = JOptionPane.showInputDialog(accountPanel, "IDë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.", "ê³„ì¢Œ ìž…ë ¥", JOptionPane.QUESTION_MESSAGE);
 							
-							if(id != null){ //ÀÔ·ÂÀÌ ÀÖÀ¸¸é
+							if(id != null){ //If input the data
 								JPasswordField passwd = new JPasswordField();
 								int ok = JOptionPane.showConfirmDialog(accountPanel, passwd, "Enter Password", JOptionPane.WARNING_MESSAGE);
 								
-								if(ok == JOptionPane.OK_OPTION){ //È®ÀÎ ¹öÆ° ´­·¶À» ½Ã
+								if(ok == JOptionPane.OK_OPTION){ //If press the button
 									String user = SE.checkUserInfo(id, passwd.getText());
 									
-									if(user == null){ //°í°´ÀÌ ¾Æ´Ï´Ù -> Á¢¼Ó ½ÇÆÐ ¾Ë¸²
-										JOptionPane.showMessageDialog(accountPanel, "¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä", "·Î±×ÀÎ ¿À·ù", JOptionPane.WARNING_MESSAGE);
+									if(user == null){ //Fail to connect
+										JOptionPane.showMessageDialog(accountPanel, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ìž…ë ¥í•´ ì£¼ì„¸ìš”", "ë¡œê·¸ì¸ ì˜¤ë¥˜", JOptionPane.WARNING_MESSAGE);
 									}
-									else{ //°í°´ÀÌ´Ù!! -> °Å·¡, ½º¸¶Æ®Æù°ú °°Àº °èÁÂ¸é ¾Ë¶÷ ¶ß°Ô
+									else{ //success to connect
 										if((SE.smartLoginState == true) && (SmartPhonePanel.userAccountNumber.getText().equals(user))){ 
-											JOptionPane.showMessageDialog(accountPanel, "°Å·¡ ¿Ï·á!", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
-											SE.banking(user, SE.getAccountName(user)+" ATM ¼Û±Ý", result, '-', true); //¿¬µ¿µÈ´ë¼­´Â Ãâ±Ý
-											SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ÀÔ±Ý", result, '+', false); //¹Þ´ÂÂÊ ÀÔ±Ý
+											JOptionPane.showMessageDialog(accountPanel, "ê±°ëž˜ ì™„ë£Œ!", "ê±°ëž˜ ì•ŒëžŒ", JOptionPane.INFORMATION_MESSAGE);
+											SE.banking(user, SE.getAccountName(user)+" ATM ì†¡ê¸ˆ", result, '-', true); 
+											SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ìž…ê¸ˆ", result, '+', false); 
 	
 										}
 										else{
-											JOptionPane.showMessageDialog(accountPanel, "°Å·¡ ¿Ï·á!", "°Å·¡ ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
-											SE.banking(user, SE.getAccountName(user)+" ATM ¼Û±Ý", result, '-', false); //¿¬µ¿µÈ´ë¼­´Â Ãâ±Ý
-											SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ÀÔ±Ý", result, '+', false); //¹Þ´ÂÂÊ ÀÔ±Ý
+											JOptionPane.showMessageDialog(accountPanel, "ê±°ëž˜ ì™„ë£Œ!", "ê±°ëž˜ ì•ŒëžŒ", JOptionPane.INFORMATION_MESSAGE);
+											SE.banking(user, SE.getAccountName(user)+" ATM ì†¡ê¸ˆ", result, '-', false); 
+											SE.banking(accountTF.getText(), SE.getAccountName(accountTF.getText()) +" ATM ìž…ê¸ˆ", result, '+', false); 
 	
 										}
 									}
@@ -123,7 +123,7 @@ public class CashTransferPanel extends JPanel{
 								}
 							}
 						}
-						else if(select == 2){ } //Ãë¼Ò
+						else if(select == 2){ } //Cancle
 					}
 				}
 			}
