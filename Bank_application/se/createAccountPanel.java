@@ -17,50 +17,50 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
-	JLabel createAccountLabel = new JLabel("create Account"); //¸ÇÀ§ ¶óº§
+class createAccountPanel extends JPanel{ 
+	JLabel createAccountLabel = new JLabel("create Account"); //ë§¨ìœ„ ë¼ë²¨
 	
-	JPanel totalPanel = new JPanel(); //¾Æ·¡ µÎ°³ ÇÕÄ£ ÆĞ³Î
-	JPanel checkedUserPanel = new JPanel(); //º»ÀÎÈ®ÀÎ ÆĞ³Î
-	JPanel accountInfoPanel = new JPanel(); //»ı¼ºÆĞ³Î
-	JPanel BtnPanel = new JPanel(); //µÚ·Î°¡±â,»ı¼º¹öÆ° ÆĞ³Î
+	JPanel totalPanel = new JPanel(); //ì•„ë˜ ë‘ê°œ í•©ì¹œ íŒ¨ë„
+	JPanel checkedUserPanel = new JPanel(); //ë³¸ì¸í™•ì¸ íŒ¨ë„
+	JPanel accountInfoPanel = new JPanel(); //ìƒì„±íŒ¨ë„
+	JPanel BtnPanel = new JPanel(); //ë’¤ë¡œê°€ê¸°,ìƒì„±ë²„íŠ¼ íŒ¨ë„
 	
-	JButton backBtn = new JButton("µÚ·Î°¡±â"); //µÚ·Î°¡±â¹öÆ°
-	JButton createBtn = new JButton("»ı¼º"); //»ı¼º¹öÆ°
+	JButton backBtn = new JButton("ë’¤ë¡œê°€ê¸°"); 
+	JButton createBtn = new JButton("ìƒì„±"); 
 	
-	JPanel userInfoPanel = new JPanel(); //ÀÌ¸§ Àü¹ø ÁÖ¹Î ÇÕÄ¥ÆĞ³Î
-	JPanel userInfoFieldPanel = new JPanel(); //ÀÌ¸§ Àü¹ø ÁÖ¹Î ÇÊµå ÇÕÄ¥ÆĞ³Î
-	JLabel nameLabel = new JLabel("ÀÌ         ¸§"); //ÀÌ¸§
-	JLabel phoneNumberLabel = new JLabel("ÀüÈ­¹øÈ£"); //Àü¹ø
-	JLabel resisterNumberLabel = new JLabel("ÁÖ¹Î¹øÈ£"); //ÁÖ¹Î
+	JPanel userInfoPanel = new JPanel(); //ì´ë¦„ ì „ë²ˆ ì£¼ë¯¼ í•©ì¹ íŒ¨ë„
+	JPanel userInfoFieldPanel = new JPanel(); //ì´ë¦„ ì „ë²ˆ ì£¼ë¯¼ í•„ë“œ í•©ì¹ íŒ¨ë„
+	JLabel nameLabel = new JLabel("ì´         ë¦„");
+	JLabel phoneNumberLabel = new JLabel("ì „í™”ë²ˆí˜¸"); 
+	JLabel resisterNumberLabel = new JLabel("ì£¼ë¯¼ë²ˆí˜¸"); 
 	static JTextField nameField = new JTextField(10); 
 	static JTextField phoneNumberField = new JTextField(10);
 	static JTextField resisterNumberField = new JTextField(10);
-	static JButton userCheckBtn = new JButton("º»ÀÎÈ®ÀÎ");
+	static JButton userCheckBtn = new JButton("ë³¸ì¸í™•ì¸");
 	
-	JPanel accountPasswdPanel = new JPanel(); //°èÁÂ¹øÈ£,ºñ¹ø ÇÕÄ¥ÆĞ³Î
-	JPanel accountPasswdFieldPanel = new JPanel(); //°èÁÂ¹øÈ£,ºñ¹øÀÇ ÇÊµå¸¦ ÇÕÄ¥ ÆĞ³Î
-	JLabel accountNumberLabel = new JLabel("°èÁÂ¹øÈ£"); //°èÁÂ¹øÈ£
-	JLabel passwdLabel = new JLabel("ºñ¹Ğ¹øÈ£"); //ºñ¹ø
-	JLabel checkedPasswdLabel = new JLabel("ºñ¹Ğ¹øÈ£ÀçÀÔ·Â"); //ºñ¹øÈ®ÀÎ
+	JPanel accountPasswdPanel = new JPanel(); //ê³„ì¢Œë²ˆí˜¸,ë¹„ë²ˆ í•©ì¹ íŒ¨ë„
+	JPanel accountPasswdFieldPanel = new JPanel(); //ê³„ì¢Œë²ˆí˜¸,ë¹„ë²ˆì˜ í•„ë“œë¥¼ í•©ì¹  íŒ¨ë„
+	JLabel accountNumberLabel = new JLabel("ê³„ì¢Œë²ˆí˜¸"); 
+	JLabel passwdLabel = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+	JLabel checkedPasswdLabel = new JLabel("ë¹„ë°€ë²ˆí˜¸ì¬ì…ë ¥"); 
 	static JTextField accountNumberField = new JTextField(10); 
 	static JPasswordField passwdField = new JPasswordField(10);
 	static JPasswordField checkedPasswdField = new JPasswordField(10);
-	static JButton reCreate = new JButton("ºñ¹Ğ¹øÈ£ È®ÀÎ"); //°èÁÂ¹øÈ£,ºñ¹Ğ¹øÈ£ Àç»ı¼º¹öÆ°
+	static JButton reCreate = new JButton("ë¹„ë°€ë²ˆí˜¸ í™•ì¸"); 
 	
-	JPanel hobbyPanel = new JPanel(); //Èï¹Ì ºÎºĞ
-	JRadioButton[] rb = new JRadioButton[4]; //À½½Ä, ¿îµ¿, ¿µÈ­, ³îÀÌ°ø¿ø
+	JPanel hobbyPanel = new JPanel(); //ê´€ì‹¬ 	
+	JRadioButton[] rb = new JRadioButton[4]; //ìŒì‹, ìš´ë™, ì˜í™”, ë†€ì´ê³µì›	
 	static ButtonGroup radioGroup = new ButtonGroup();
 	
 	createAccountPanel(){
 		setLayout(new BorderLayout());
 		add(createAccountLabel,BorderLayout.NORTH);
-		createAccountLabel.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		createAccountLabel.setHorizontalAlignment(JLabel.CENTER); 
 		
 		totalPanel.setLayout(new BoxLayout(totalPanel,BoxLayout.Y_AXIS));
 		
-		//ÀÌ¸§ÀüÈ­¹øÈ£ÁÖ¹Î¹øÈ£ ºÎºĞ ÆĞ³Î
-		checkedUserPanel.setLayout(new GridLayout(0, 3)); //Èì .... 
+		//ì´ë¦„ì „í™”ë²ˆí˜¸ì£¼ë¯¼ë²ˆí˜¸ ë¶€ë¶„ íŒ¨ë„
+		checkedUserPanel.setLayout(new GridLayout(0, 3)); 
 		
 		userInfoPanel.setLayout(new GridLayout(3, 0));
 		userInfoPanel.add(nameLabel);
@@ -76,9 +76,9 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		
 		checkedUserPanel.add(userInfoPanel);
 		checkedUserPanel.add(userInfoFieldPanel);
-		checkedUserPanel.add(userCheckBtn); //º»ÀÎÈ®ÀÎ ¹öÆ°
+		checkedUserPanel.add(userCheckBtn); //ë³¸ì¸í™•ì¸ ë²„íŠ¼
 		
-		//°èÁÂ¹øÈ£ ºñ¹Ğ¹øÈ£ ºÎºĞÆĞ³Î
+		//ê³„ì¢Œë²ˆí˜¸ ë¹„ë°€ë²ˆí˜¸ íŒ¨ë„
 		accountInfoPanel.setLayout(new GridLayout(0, 3));
 		
 		accountPasswdPanel.setLayout(new GridLayout(3, 0));
@@ -96,15 +96,15 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		
 		accountInfoPanel.add(accountPasswdPanel);
 		accountInfoPanel.add(accountPasswdFieldPanel);
-		accountInfoPanel.add(reCreate); //Àç»ı¼º ¹öÆ°
+		accountInfoPanel.add(reCreate); //ì¬ìƒì„± ë²„íŠ¼
 		
-		//Èï¹Ì ºÎºĞ ÆĞ³Î, À½½Ä, ¿îµ¿, ¿µÈ­, ³îÀÌ°ø¿ø
-		hobbyPanel.setBorder(BorderFactory.createTitledBorder("Èï¹Ì ¼±ÅÃ"));
+		//ê´€ì‹¬ íŒ¨ë„, ìŒì‹, ìš´ë™, ì˜í™”, ë†€ì´ê³µì›
+		hobbyPanel.setBorder(BorderFactory.createTitledBorder("í¥ë¯¸ ì„ íƒ"));
 		
-		rb[0] = new JRadioButton("À½½Ä");
-		rb[1] = new JRadioButton("¿îµ¿");
-		rb[2] = new JRadioButton("¿µÈ­");
-		rb[3] = new JRadioButton("³îÀÌ");
+		rb[0] = new JRadioButton("ìŒì‹");
+		rb[1] = new JRadioButton("ìš´ë™");
+		rb[2] = new JRadioButton("ì˜í™”");
+		rb[3] = new JRadioButton("ë†€ì´");
 		
 		radioGroup.add(rb[0]);
 		radioGroup.add(rb[1]);
@@ -116,29 +116,29 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 		hobbyPanel.add(rb[2]);
 		hobbyPanel.add(rb[3]);
 		
-		//µÚ·Î°¡±â, »ı¼º¹öÆ° ÆĞ³Î
+		//ë’¤ë¡œê°€ê¸°, ìƒì„±ë²„íŠ¼ íŒ¨ë„
 		backBtn.addMouseListener(new MyMouseAdapter());
 		createBtn.addMouseListener(new MyMouseAdapter());
 		
 		BtnPanel.add(backBtn);
 		BtnPanel.add(createBtn);
 		
-		//ÀüÃ¼ ÇÁ·¹ÀÓ ¿¡µå
-		totalPanel.add(checkedUserPanel); //ÀÌ¸§ ÀüÈ­¹øÈ£ ÁÖ¹Î¹øÈ£
-		totalPanel.add(accountInfoPanel); //°èÁÂ¹øÈ£ ºñ¹Ğ¹øÈ£ ÀçÀÔ·Â
-		totalPanel.add(hobbyPanel); //Èï¹Ì
-		totalPanel.add(BtnPanel); //Ãë¼Ò, »ı¼º
+		//ì „ì²´ í”„ë ˆì„ ì—ë“œ
+		totalPanel.add(checkedUserPanel); //ì´ë¦„ ì „í™”ë²ˆí˜¸ ì£¼ë¯¼ë²ˆí˜¸
+		totalPanel.add(accountInfoPanel); //ê³„ì¢Œë²ˆí˜¸ ë¹„ë°€ë²ˆí˜¸ ì¬ì…ë ¥
+		totalPanel.add(hobbyPanel); //í¥ë¯¸
+		totalPanel.add(BtnPanel); //ì·¨ì†Œ, ìƒì„±
 		
 		add(totalPanel,BorderLayout.CENTER);
 		
-		//½ÃÀÛÀº ºñÈ°¼ºÈ­
+		//ì‹œì‘ì€ ë¹„í™œì„±í™”
 		reCreate.setEnabled(false);
 		accountNumberField.setEditable(false);
 		passwdField.setEditable(false);
 		checkedPasswdField.setEditable(false);
 	}
 	
-	static void init(){ //ÃÊ±âÈ­
+	static void init(){ //ì´ˆê¸°í™”
 		nameField.setText("");
 		phoneNumberField.setText("");
 		resisterNumberField.setText("");
@@ -162,10 +162,10 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 	
 	class MyMouseAdapter extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
-			if(e.getSource() == userCheckBtn){ //º»ÀÎ È®ÀÎ ¹öÆ°
+			if(e.getSource() == userCheckBtn){ //ë³¸ì¸ í™•ì¸ ë²„íŠ¼
 				if(userCheckBtn.isEnabled()){
 					if(nameField.getText().equals("")){ } 
-					else{ //ÀÌ¸§ ÆĞ³ÎÀÌ nullÀÌ ¾Æ´Ï¸é
+					else{ 
 						userCheckBtn.setEnabled(false);
 						nameField.setEditable(false);
 						phoneNumberField .setEditable(false);
@@ -179,27 +179,27 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 					}
 				}
 			}
-			else if(e.getSource() == reCreate){ //ºñ¹Ğ¹øÈ£ È®ÀÎ ¹öÆ°
+			else if(e.getSource() == reCreate){ //ë¹„ë°€ë²ˆí˜¸ í™•ì¸ ë²„íŠ¼
 				if(reCreate.isEnabled()){
-					if(passwdField.getText().equals(checkedPasswdField.getText())){ //ºñ¹øÀÌ °°À¸¸é
+					if(passwdField.getText().equals(checkedPasswdField.getText())){ 
 						if(passwdField.getText().length() == 4){
 							reCreate.setEnabled(false);
 						}
 						else{
-							JOptionPane.showMessageDialog(SE.mf, "ºñ¹Ğ¹øÈ£´Â 4ÀÚ¸®·Î ¸¸µé¾îÁÖ¼¼¿ä!", "°èÁÂ »ı¼º ¾Ë¶÷", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(SE.mf, "ë¹„ë°€ë²ˆí˜¸ëŠ” 4ìë¦¬ë¡œ ë§Œë“¤ì–´ì£¼ì„¸ìš”!", "ê³„ì¢Œ ìƒì„± ì•ŒëŒ", JOptionPane.WARNING_MESSAGE);
 						}
 					}
-					else{ //ºñ¹øÀÌ ´Ù¸£¸é
-						JOptionPane.showMessageDialog(SE.mf, "ºñ¹Ğ¹øÈ£È­ È®ÀÎÀÌ ´Ù¸¨´Ï´Ù!", "°èÁÂ »ı¼º ¾Ë¶÷", JOptionPane.WARNING_MESSAGE);
+					else{ 
+						JOptionPane.showMessageDialog(SE.mf, "ë¹„ë°€ë²ˆí˜¸í™” í™•ì¸ì´ ë‹¤ë¦…ë‹ˆë‹¤!", "ê³„ì¢Œ ìƒì„± ì•ŒëŒ", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}
-			else if(e.getSource() == createBtn){ //»ı¼º
-				if(reCreate.isEnabled() || userCheckBtn.isEnabled()){ //°Å¸£±â
-					JOptionPane.showMessageDialog(SE.mf, "È®ÀÎ ¹öÆ°À» ´­·¯ÁÖ¼¼¿ä!", "°èÁÂ »ı¼º ¾Ë¶÷", JOptionPane.WARNING_MESSAGE);
+			else if(e.getSource() == createBtn){ //ìƒì„±
+				if(reCreate.isEnabled() || userCheckBtn.isEnabled()){ 
+					JOptionPane.showMessageDialog(SE.mf, "í™•ì¸ ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”!", "ê³„ì¢Œ ìƒì„± ì•ŒëŒ", JOptionPane.WARNING_MESSAGE);
 				}
 				else{
-					if(radioGroup.getSelection() != null){ //Èï¹Ì Ã¼Å© ¿Ï·á
+					if(radioGroup.getSelection() != null){ //í¥ë¯¸ ì²´í¬ ì™„ë£Œ
 						String str = null;
 						
 						if(rb[0].isSelected()){ str = "1"; }
@@ -208,11 +208,11 @@ class createAccountPanel extends JPanel{ //MainFrame ¼Ò¼Ó
 						else if(rb[3].isSelected()){ str = "4"; }
 						
 						SE.createUser(nameField.getText(), accountNumberField.getText(), passwdField.getText(), str);
-						JOptionPane.showMessageDialog(SE.mf, "»ı¼º ¿Ï·á!", "°èÁÂ »ı¼º ¾Ë¶÷", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(SE.mf, "ìƒì„± ì™„ë£Œ!", "ê³„ì¢Œ ìƒì„± ì•ŒëŒ", JOptionPane.INFORMATION_MESSAGE);
 						backBtn.doClick();
 					}
 					else{
-						JOptionPane.showMessageDialog(SE.mf, "Èï¹Ì¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä!", "°èÁÂ »ı¼º ¾Ë¶÷", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(SE.mf, "í¥ë¯¸ë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”!", "ê³„ì¢Œ ìƒì„± ì•ŒëŒ", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}
