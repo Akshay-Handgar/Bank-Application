@@ -18,17 +18,17 @@ class useCashPanel extends JPanel{
 	JPanel labelPanel = new JPanel();
 	static JLabel userName = new JLabel();
 	static JLabel userBalance = new JLabel();
-	JButton backBtn = new JButton("µÚ·Î°¡±â");
+	JButton backBtn = new JButton("ë’¤ë¡œê°€ê¸°");
 	
 	static String account = null;
 	
-	Border border = BorderFactory.createTitledBorder(""); // Å×µÎ¸®Ãß°¡
+	Border border = BorderFactory.createTitledBorder(""); 
 	
 	useCashPanel(){		
 		setLayout(new BorderLayout(30, 30));
 		
-		userName.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
-		userBalance.setHorizontalAlignment(JLabel.CENTER); //¶óº§ Áß¾ÓÁ¤·Ä
+		userName.setHorizontalAlignment(JLabel.CENTER); 
+		userBalance.setHorizontalAlignment(JLabel.CENTER); 
 		
 		labelPanel.setLayout(new GridLayout(2,0));
 		labelPanel.add(userName);
@@ -43,28 +43,27 @@ class useCashPanel extends JPanel{
 	static void setAccount(String str){
 		account = str;
 		setTable();
-		userName.setText(SE.getAccountName(account) + "´ÔÀÇ »ç¿ë ³»¿ª ÀÔ´Ï´Ù.");
-		userBalance.setText("ÀÜ¾× : " + SE.getAccountBalance(account) + " ¿ø");
+		userName.setText(SE.getAccountName(account) + "ë‹˜ì˜ ì‚¬ìš© ë‚´ì—­ ì…ë‹ˆë‹¤.");
+		userBalance.setText("ì”ì•¡ : " + SE.getAccountBalance(account) + " ì›");
 	}
 	
 	static void setTable(){
-		totalPanel.removeAll(); //ÆĞ³Î ÃÊ±âÈ­
+		totalPanel.removeAll(); 
 		
 		String str = SE.setTable(account);
-		String strLine[] = str.split("\\|"); //ÁÙ ´ÜÀ§
+		String strLine[] = str.split("\\|"); 
 		
-		String header[] = {"À¯Çü", "±İ¾×", "³»¿ë", "³¯Â¥", "½Ã°£"};
+		String header[] = {"ìœ í˜•", "ê¸ˆì•¡", "ë‚´ìš©", "ë‚ ì§œ", "ì‹œê°„"};
 		String data[][] = new String[strLine.length][header.length];
 		
 		for(int i=0;i<strLine.length;i++){
-			String s[] = strLine[i].split("_"); //°³º° ´ÜÀ§
+			String s[] = strLine[i].split("_"); 
 			
 			for(int j=0;j<s.length;j++){
 				data[i][j] = s[j];
 			}
 		}
 		
-		//ºÙÀÌ´Â ¼ø¼­ Áß¿ä! table ºÙÀÌ°í -> ½ºÅ©·Ñ »ı¼º -> ½ºÅ©·Ñ ºÙÀÌ±â
 		JTable table = new JTable(data, header);
 		totalPanel.add(table, BorderLayout.CENTER);
 		
